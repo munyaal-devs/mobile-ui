@@ -1,18 +1,14 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from '@munyaal/mobile-ui';
+import { StyleSheet, Text, View } from 'react-native';
+import { Button } from '@munyaal/mobile-ui';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
-
-  React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Hello World</Text>
+      <Button />
     </View>
   );
 }
