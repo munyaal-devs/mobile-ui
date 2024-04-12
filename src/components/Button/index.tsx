@@ -1,13 +1,23 @@
-import type { FC } from 'react';
-import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import React, { forwardRef, memo } from 'react';
+import { Pressable, View } from 'react-native';
+import type { ForwardComponentHeadingType } from './types';
+import { useComponentHeading } from './hook';
+import { defaultStyles } from './styles';
 
-const Button: FC = () => {
+const Button: ForwardComponentHeadingType = (props) => {
+  const { children, ...propsWithoutChildren } = props;
+
+  const { styles, nativeProps } = useComponentHeading(propsWithoutChildren);
+
   return (
-    <TouchableOpacity activeOpacity={0.5}>
-      <Text>Hello World</Text>
-    </TouchableOpacity>
+    <Pressable {...nativeProps}>
+      {({ pressed }) => (
+        <View style={[...styles, pressed ? defaultStyles.pressed : null]}>
+          {children}
+        </View>
+      )}
+    </Pressable>
   );
 };
 
-export default Button;
+export default memo(forwardRef(Button));
