@@ -26,9 +26,12 @@ export type ColorShadeKey = keyof ColorShadePalette;
 export type ColorScheme = {
   primary: ColorShadePalette;
   secondary: ColorShadePalette;
-  error: ColorShadePalette;
   success: ColorShadePalette;
+  error: ColorShadePalette;
   warning: ColorShadePalette;
+  info: ColorShadePalette;
+  text: ColorShadePalette;
+  background: ColorShadePalette;
 };
 
 /**
@@ -39,7 +42,7 @@ export type ColorSchemeKey = keyof ColorScheme;
 /**
  * Define el nombre de un color
  * */
-export type ColorName = `$${ColorSchemeKey}${ColorShadeKey}`;
+export type ColorName = `${ColorSchemeKey}${ColorShadeKey}`;
 
 /**
  * Define todos los colores del tema
@@ -48,9 +51,12 @@ export type Colors = {
   [colorName in ColorName]: string;
 };
 
-/*
- * Define la estructura del tema
- * */
+export type ThemeMode = 'light' | 'dark';
+
 export type Theme = {
   colors: Colors;
+};
+
+export type Themes = {
+  [key in ThemeMode]: Theme;
 };
