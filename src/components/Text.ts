@@ -3,8 +3,8 @@ import type {
   ComponentConfiguration,
   FontWeights,
   Styles,
-} from '../../utils';
-import { factoryComponent } from '../factory.component';
+} from '../utils';
+import { factoryComponent } from '../builder/factory.component';
 import { Text as TextNative, type TextProps } from 'react-native';
 
 export type TextVariants = {

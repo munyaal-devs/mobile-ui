@@ -5,5 +5,5 @@
 // export * from './Heading';
 // export * from './HStack';
 export * from './Text';
-// export * from './View';
+export * from './View';
 export * from './VStack';

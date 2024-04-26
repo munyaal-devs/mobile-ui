@@ -1,5 +1,5 @@
-import type { BasicSizes, ComponentConfiguration, Styles } from '../../utils';
-import { factoryComponent } from '../factory.component';
+import type { BasicSizes, ComponentConfiguration, Styles } from '../utils';
+import { factoryComponent } from '../builder/factory.component';
 import { View, type ViewProps } from 'react-native';
 
 export type VStackVariants = {
