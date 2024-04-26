@@ -42,13 +42,13 @@ export type ColorSchemeKey = keyof ColorScheme;
 /**
  * Define el nombre de un color
  * */
-export type ColorName = `${ColorSchemeKey}${ColorShadeKey}`;
+export type ColorKey = `${ColorSchemeKey}${ColorShadeKey}`;
 
 /**
  * Define todos los colores del tema
  * */
 export type Colors = {
-  [colorName in ColorName]: string;
+  [colorName in ColorKey]: string;
 };
 
 export type ThemeMode = 'light' | 'dark';

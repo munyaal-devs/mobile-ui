@@ -42,6 +42,8 @@ export type BorderRadius = {
   none: ViewStyle['borderRadius'];
 };
 
+export type BorderRadiusKey = keyof BorderRadius;
+
 export type BorderWidths = {
   '0': ViewStyle['borderWidth'];
   '1': ViewStyle['borderWidth'];
@@ -100,6 +102,8 @@ export type Sizes = {
   'full': ViewStyle['width'];
 };
 
+export type SizeKey = keyof Sizes;
+
 export type Spaces = {
   '0': ViewStyle['margin'];
   '0.5': ViewStyle['margin'];
@@ -134,6 +138,8 @@ export type Spaces = {
   '102': ViewStyle['margin'];
 };
 
+export type SpaceKey = keyof Spaces;
+
 export type Opacity = {
   0: ViewStyle['opacity'];
   5: ViewStyle['opacity'];
@@ -163,5 +169,3 @@ export type Tokens = {
   sizes: Sizes;
   opacity: Opacity;
 };
-
-export type TokenKey = keyof Tokens;

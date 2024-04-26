@@ -20,7 +20,7 @@ export function useComponentBuilder<
     ...generalStyles
   } = configuration;
 
-  const ui = useUIProvider();
+  const { aliases: configuredAliases, ...ui } = useUIProvider();
 
   /**
    * Realiza mezcla de las propiedades por defecto y las propiedades asignadas por el desarrollador,
@@ -67,7 +67,10 @@ export function useComponentBuilder<
       defaultStyles: Map<string, string>,
       mixedProperties: Map<string, string>
     ) => {
+      const aliases = Object.assign({}, configuredAliases);
+
       const variants = Object.assign({}, configuredVariants);
+
       mixedProperties.forEach((value: string, key: string) => {
         if (variants.hasOwnProperty(key)) {
           const variant = variants[key];
@@ -82,11 +85,17 @@ export function useComponentBuilder<
             }
           }
         }
+
+        if (aliases.hasOwnProperty(key)) {
+          const aliasStyle = aliases[key];
+
+          defaultStyles.set(aliasStyle, value);
+        }
       });
 
       return defaultStyles;
     },
-    [configuredVariants]
+    [configuredAliases, configuredVariants]
   );
 
   /**
@@ -95,6 +104,8 @@ export function useComponentBuilder<
   const applyTheme = useCallback(
     (styleMap: Map<string, string>) => {
       const custom: BasicProps['style'] = {};
+
+      console.log(styleMap);
 
       styleMap.forEach((value, key) => {
         if (value.startsWith('$')) {
@@ -115,6 +126,8 @@ export function useComponentBuilder<
           Object.assign(custom, { [key]: value });
         }
       });
+
+      console.log(custom);
 
       return custom;
     },
@@ -160,18 +173,19 @@ export function useComponentBuilder<
   const properties = useMemo(() => {
     const customProps = Object.assign({}, props);
 
-    const { variants } = configuration;
-
     delete customProps.style;
 
     for (const key in customProps) {
-      if (variants?.hasOwnProperty(key)) {
+      if (
+        configuredVariants?.hasOwnProperty(key) ||
+        configuredAliases?.hasOwnProperty(key)
+      ) {
         delete customProps[key];
       }
     }
 
     return customProps;
-  }, [props, configuration]);
+  }, [props, configuredAliases, configuredVariants]);
 
   return {
     styles,

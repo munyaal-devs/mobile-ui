@@ -1,4 +1,4 @@
-import type { Aliases } from './aliases.type';
+import type { Aliases, AliasStyle } from './aliases.type';
 import type { Tokens } from './tokens.type';
 import type { Themes } from './theme.type';
 import type { ImageProps, TextProps, ViewProps } from 'react-native';
@@ -42,7 +42,7 @@ export type IsBoolean = 'true' | 'false';
  */
 export type ComponentProps<V> = {
   [K in keyof V]?: keyof V[K] extends IsBoolean ? boolean : keyof V[K];
-};
+} & Partial<AliasStyle>;
 
 /**
  * Define el tipo de estilo de un componente con variaciones.

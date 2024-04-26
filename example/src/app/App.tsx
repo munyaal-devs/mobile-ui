@@ -43,26 +43,26 @@ export default function App() {
         {/*  Hola Mundo*/}
         {/*</Text>*/}
 
-        <Text>
+        <Text mt={'$20'} size={'lg'} weight={'light'}>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
           consequatur debitis doloribus error facere, ipsa molestiae odit
           quisquam, quos sed tempora totam. Cum dolorum error, et hic omnis rem
           sit.
         </Text>
 
-        <VStack>
+        <VStack mt={'$8'}>
           <View style={styles.box}>
             <Text size={'xl'} style={styles.text}>
               1
             </Text>
           </View>
           <View style={styles.box}>
-            <Text style={styles.text} size={'xl'}>
+            <Text size={'xl'} style={styles.text}>
               2
             </Text>
           </View>
           <View style={styles.box}>
-            <Text style={styles.text} size={'xl'}>
+            <Text size={'xl'} style={styles.text}>
               3
             </Text>
           </View>
