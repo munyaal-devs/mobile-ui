@@ -1,7 +1,14 @@
 import type { Aliases, AliasStyle } from './aliases.type';
 import type { Tokens } from './tokens.type';
 import type { Themes } from './theme.type';
-import type { ImageProps, TextProps, ViewProps } from 'react-native';
+import type {
+  ImageProps,
+  ImageStyle,
+  TextProps,
+  TextStyle,
+  ViewProps,
+  ViewStyle,
+} from 'react-native';
 
 export type Config = {
   aliases: Aliases;
@@ -27,6 +34,12 @@ export type ExtendWithStrings<T> = T extends infer E
  * Puede ser ViewProps, ImageProps o TextProps.
  */
 export type BasicProps = ImageProps | TextProps | ViewProps;
+
+/**
+ * Define los estilos básicos de un componente de react native
+ * Puede ser ViewStyle, ImageStyle o TextStyle.
+ */
+export type BasicStyles = ImageStyle | TextStyle | ViewStyle;
 
 /**
  * Define una unión de los tipos de estilo que quieres permitir.

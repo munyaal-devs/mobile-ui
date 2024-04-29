@@ -9,18 +9,19 @@ import type {
   BasicProps,
   ComponentConfiguration,
   ComponentProps,
-} from '../utils/types';
+} from '../utils';
 
 export function factoryComponent<
   P extends BasicProps,
   V extends Record<string, any>,
+  S,
 >(
   StyledComponent: ComponentType<PropsWithChildren<BasicProps>>,
   configuration: ComponentConfiguration<V>
 ) {
-  const FunctionalComponent: FC<PropsWithChildren<ComponentProps<V> & P>> = (
-    props
-  ) => {
+  const FunctionalComponent: FC<
+    PropsWithChildren<ComponentProps<V> & P & S>
+  > = (props) => {
     const { children, ...allProps } = props;
 
     const { styles, properties } = useComponentBuilder<P, V>(

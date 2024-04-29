@@ -77,3 +77,24 @@ propertyTokensMap.set('borderEndStartRadius', borderRadius);
 propertyTokensMap.set('color', colors);
 propertyTokensMap.set('backgroundColor', colors);
 propertyTokensMap.set('opacity', opacity);
+
+export const specificStyleTokensMap: Map<string, string> = new Map<
+  string,
+  string
+>();
+
+specificStyleTokensMap.set('flex', 'flex');
+specificStyleTokensMap.set('flexDirection', 'flexDirection');
+specificStyleTokensMap.set('direction', 'direction');
+specificStyleTokensMap.set('justifyContent', 'justifyContent');
+specificStyleTokensMap.set('alignItems', 'alignItems');
+specificStyleTokensMap.set('alignSelf', 'alignSelf');
+specificStyleTokensMap.set('alignContent', 'alignContent');
+specificStyleTokensMap.set('flexWrap', 'flexWrap');
+specificStyleTokensMap.set('flexBasis', 'flexBasis');
+specificStyleTokensMap.set('flexGrow', 'flexGrow');
+specificStyleTokensMap.set('flexShrink', 'flexShrink');
+specificStyleTokensMap.set('rowGap', 'rowGap');
+specificStyleTokensMap.set('columnGap', 'columnGap');
+specificStyleTokensMap.set('gap', 'gap');
+specificStyleTokensMap.set('position', 'position');

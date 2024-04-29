@@ -5,7 +5,10 @@ import type {
 } from './../utils/types';
 import { type PropsWithChildren, useCallback, useMemo } from 'react';
 import { useUIProvider } from '../providers/UIProvider';
-import { propertyTokensMap } from '../utils/property.token.map';
+import {
+  propertyTokensMap,
+  specificStyleTokensMap,
+} from '../utils/property.token.map';
 
 export function useComponentBuilder<
   P extends BasicProps,
@@ -27,7 +30,7 @@ export function useComponentBuilder<
    * se le asigna un peso más grande a las propiedades escritas por el desarrollador
    * */
   const mixProperties = useCallback(() => {
-    const propsMap = new Map<string, string>();
+    const propsMap = new Map<string, string | number>();
 
     for (const key in defaultProps) {
       const value = `${defaultProps[key] as any}`;
@@ -48,7 +51,7 @@ export function useComponentBuilder<
    * Crear un mapa de los estilos generales
    * */
   const createDefaultStyles = useCallback(() => {
-    const styleMap = new Map<string, string>();
+    const styleMap = new Map<string, string | number>();
 
     for (const key in generalStyles) {
       const value = generalStyles[key];
@@ -64,14 +67,14 @@ export function useComponentBuilder<
    * */
   const createStyles = useCallback(
     (
-      defaultStyles: Map<string, string>,
-      mixedProperties: Map<string, string>
+      defaultStyles: Map<string, string | number>,
+      mixedProperties: Map<string, string | number>
     ) => {
       const aliases = Object.assign({}, configuredAliases);
 
       const variants = Object.assign({}, configuredVariants);
 
-      mixedProperties.forEach((value: string, key: string) => {
+      mixedProperties.forEach((value: string | number, key: string) => {
         if (variants.hasOwnProperty(key)) {
           const variant = variants[key];
 
@@ -102,13 +105,11 @@ export function useComponentBuilder<
    * En caso de asignar estilos del tema, esta funciona los busca y los asigna a la hoja de estilos
    * */
   const applyTheme = useCallback(
-    (styleMap: Map<string, string>) => {
+    (styleMap: Map<string, string | number>) => {
       const custom: BasicProps['style'] = {};
 
-      console.log(styleMap);
-
       styleMap.forEach((value, key) => {
-        if (value.startsWith('$')) {
+        if (typeof value === 'string' && value.startsWith('$')) {
           value = value.replace('$', '');
 
           const token = propertyTokensMap.get(key);
@@ -127,15 +128,13 @@ export function useComponentBuilder<
         }
       });
 
-      console.log(custom);
-
       return custom;
     },
     [ui]
   );
 
   const mergeStyles = useCallback(
-    (styles: Map<string, string>) => {
+    (styles: Map<string, string | number>) => {
       const customProps: any = Object.assign({}, props.style);
 
       for (const key in customProps) {
@@ -144,9 +143,19 @@ export function useComponentBuilder<
         styles.set(key, value);
       }
 
+      for (const key in props) {
+        if (specificStyleTokensMap.has(key)) {
+          const value: any = props[key];
+
+          if (typeof value === 'string' || typeof value === 'number') {
+            styles.set(key, value);
+          }
+        }
+      }
+
       return styles;
     },
-    [props.style]
+    [props]
   );
 
   /**
@@ -178,7 +187,8 @@ export function useComponentBuilder<
     for (const key in customProps) {
       if (
         configuredVariants?.hasOwnProperty(key) ||
-        configuredAliases?.hasOwnProperty(key)
+        configuredAliases?.hasOwnProperty(key) ||
+        specificStyleTokensMap.has(key)
       ) {
         delete customProps[key];
       }

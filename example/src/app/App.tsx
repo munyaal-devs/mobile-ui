@@ -1,12 +1,7 @@
 import * as React from 'react';
 import { useMemo } from 'react';
 
-import {
-  type ColorSchemeName,
-  ScrollView,
-  StyleSheet,
-  useColorScheme,
-} from 'react-native';
+import { type ColorSchemeName, StyleSheet, useColorScheme } from 'react-native';
 import {
   Text,
   type ThemeMode,
@@ -26,32 +21,53 @@ export default function App() {
 
   return (
     <UIProvider theme={theme} config={UIConfig}>
-      <ScrollView style={styles.container}>
-        <Text mt={'$20'} size={'lg'} weight={'light'}>
+      <VStack mt={'$8'} p={'$8'} flex={1}>
+        <Text size={'lg'} weight={'light'}>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
           consequatur debitis doloribus error facere, ipsa molestiae odit
           quisquam, quos sed tempora totam. Cum dolorum error, et hic omnis rem
           sit.
         </Text>
-
-        <VStack mt={'$8'}>
-          <View w={'$18'} h={'$18'} bg={'$primary500'}>
-            <Text size={'xl'} style={styles.text}>
-              1
-            </Text>
-          </View>
-          <View w={'$18'} h={'$18'} bg={'$primary500'}>
-            <Text size={'xl'} style={styles.text}>
-              2
-            </Text>
-          </View>
-          <View w={'$18'} h={'$18'} bg={'$primary500'}>
-            <Text size={'xl'} style={styles.text}>
-              3
-            </Text>
-          </View>
-        </VStack>
-      </ScrollView>
+        <View
+          w={'$18'}
+          h={'$18'}
+          bg={'$primary500'}
+          rounded={'$md'}
+          flex={1}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <Text size={'xl'} style={styles.text}>
+            1
+          </Text>
+        </View>
+        <View
+          w={'$18'}
+          h={'$18'}
+          bg={'$primary500'}
+          rounded={'$md'}
+          flex={2}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <Text size={'xl'} style={styles.text}>
+            2
+          </Text>
+        </View>
+        <View
+          w={'$18'}
+          h={'$18'}
+          bg={'$primary500'}
+          rounded={'$md'}
+          flex={3}
+          justifyContent={'center'}
+          alignItems={'center'}
+        >
+          <Text size={'xl'} style={styles.text}>
+            3
+          </Text>
+        </View>
+      </VStack>
     </UIProvider>
   );
 }

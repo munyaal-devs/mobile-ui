@@ -4,7 +4,7 @@ import type {
   FontWeights,
   Styles,
 } from '../utils';
-import { factoryComponent } from '../builder/factory.component';
+import { factoryComponent } from '../builder';
 import { Text as TextNative, type TextProps } from 'react-native';
 
 export type TextVariants = {
@@ -56,7 +56,7 @@ const config: ComponentConfiguration<TextVariants> = {
   },
 };
 
-export const Text = factoryComponent<TextProps, TextVariants>(
+export const Text = factoryComponent<TextProps, TextVariants, {}>(
   TextNative,
   config
 );
