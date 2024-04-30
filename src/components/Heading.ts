@@ -1,81 +1,64 @@
-export const Heading = {
-  color: '$text900',
-  letterSpacing: '$sm',
-  fontWeight: '$bold',
-  fontFamily: '$heading',
-  marginVertical: 0,
+import type {
+  BasicSizes,
+  ComponentConfiguration,
+  FontWeights,
+  Styles,
+  TextSpecificStyles,
+} from '../utils';
+import { factoryComponent } from '../builder';
+import { Text as TextNative, type TextProps } from 'react-native';
 
+export type HeadingVariants = {
+  size: {
+    [key in keyof BasicSizes]: Styles;
+  };
+  weight: {
+    [key in keyof FontWeights]: Styles;
+  };
+};
+
+const config: ComponentConfiguration<HeadingVariants> = {
+  color: '$text900',
+  letterSpacing: '$md',
   variants: {
-    isTruncated: {
-      true: {
-        props: {
-          numberOfLines: 1,
-          ellipsizeMode: 'tail',
-        },
-      },
-    },
-    bold: {
-      true: {
-        fontWeight: '$bold',
-      },
-    },
-    underline: {
-      true: {
-        textDecorationLine: 'underline',
-      },
-    },
-    strikeThrough: {
-      true: {
-        textDecorationLine: 'line-through',
-      },
-    },
     size: {
-      '5xl': {
-        fontSize: '$6xl',
-      },
-      '4xl': {
-        fontSize: '$5xl',
-      },
-      '3xl': {
-        fontSize: '$4xl',
-      },
-      '2xl': {
-        fontSize: '$3xl',
-      },
-      'xl': {
-        fontSize: '$2xl',
-      },
-      'lg': {
+      xs: {
         fontSize: '$xl',
+        lineHeight: '$xl',
       },
-      'md': {
-        fontSize: '$lg',
+      sm: {
+        fontSize: '$2xl',
+        lineHeight: '$2xl',
       },
-      'sm': {
-        fontSize: '$md',
+      md: {
+        fontSize: '$3xl',
+        lineHeight: '$3xl',
       },
-      'xs': {
-        fontSize: '$sm',
+      lg: {
+        fontSize: '$4xl',
+        lineHeight: '$4xl',
       },
-    },
-    sub: {
-      true: {
-        fontSize: '$xs',
-      },
-    },
-    italic: {
-      true: {
-        fontStyle: 'italic',
+      xl: {
+        fontSize: '$5xl',
+        lineHeight: '$5xl',
       },
     },
-    highlight: {
-      true: {
-        bg: '$yellow500',
-      },
+    weight: {
+      light: { fontWeight: '$light' },
+      medium: { fontWeight: '$medium' },
+      normal: { fontWeight: '$normal' },
+      semibold: { fontWeight: '$semibold' },
+      bold: { fontWeight: '$bold' },
     },
   },
-
   defaultProps: {
-    size: 'lg',
+    size: 'md',
+    weight: 'medium',
   },
 };
+
+export const Heading = factoryComponent<
+  TextProps,
+  HeadingVariants,
+  TextSpecificStyles
+>(TextNative, config);

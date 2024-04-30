@@ -1,7 +1,11 @@
-import type { BasicSizes, ComponentConfiguration, Styles } from '../utils';
+import type {
+  BasicSizes,
+  ComponentConfiguration,
+  Styles,
+  ViewSpecificStyles,
+} from '../utils';
 import { factoryComponent } from '../builder';
 import { View as NativeView, type ViewProps } from 'react-native';
-import type { SpecificStyles } from '../utils/types/specific.styles.type';
 
 export type VStackVariants = {
   space: {
@@ -46,5 +50,5 @@ const config: ComponentConfiguration<VStackVariants> = {
 export const VStack = factoryComponent<
   ViewProps,
   VStackVariants,
-  SpecificStyles
+  ViewSpecificStyles
 >(NativeView, config);

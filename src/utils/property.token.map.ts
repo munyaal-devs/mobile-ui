@@ -98,3 +98,4 @@ specificStyleTokensMap.set('rowGap', 'rowGap');
 specificStyleTokensMap.set('columnGap', 'columnGap');
 specificStyleTokensMap.set('gap', 'gap');
 specificStyleTokensMap.set('position', 'position');
+specificStyleTokensMap.set('color', 'color');

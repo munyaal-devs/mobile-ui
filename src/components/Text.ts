@@ -3,6 +3,7 @@ import type {
   ComponentConfiguration,
   FontWeights,
   Styles,
+  TextSpecificStyles,
 } from '../utils';
 import { factoryComponent } from '../builder';
 import { Text as TextNative, type TextProps } from 'react-native';
@@ -56,7 +57,8 @@ const config: ComponentConfiguration<TextVariants> = {
   },
 };
 
-export const Text = factoryComponent<TextProps, TextVariants, {}>(
-  TextNative,
-  config
-);
+export const Text = factoryComponent<
+  TextProps,
+  TextVariants,
+  TextSpecificStyles
+>(TextNative, config);

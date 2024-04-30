@@ -1,30 +1,35 @@
-export const HStack = {
+import type { BasicSizes, ComponentConfiguration, Styles } from '../utils';
+import { factoryComponent } from '../builder';
+import { View as NativeView, type ViewProps } from 'react-native';
+import type { ViewSpecificStyles } from '../utils';
+
+export type HStackVariants = {
+  space: {
+    [key in keyof BasicSizes]: Styles;
+  };
+  reversed: {
+    true: Styles;
+  };
+};
+
+const config: ComponentConfiguration<HStackVariants> = {
   flexDirection: 'row',
   variants: {
     space: {
-      'xs': {
+      xs: {
         gap: `$1`,
       },
-      'sm': {
+      sm: {
         gap: `$2`,
       },
-      'md': {
+      md: {
         gap: `$3`,
       },
-      'lg': {
+      lg: {
         gap: `$4`,
       },
-      'xl': {
+      xl: {
         gap: `$5`,
-      },
-      '2xl': {
-        gap: `$6`,
-      },
-      '3xl': {
-        gap: `$7`,
-      },
-      '4xl': {
-        gap: `$8`,
       },
     },
     reversed: {
@@ -33,4 +38,13 @@ export const HStack = {
       },
     },
   },
+  defaultProps: {
+    space: 'md',
+  },
 };
+
+export const HStack = factoryComponent<
+  ViewProps,
+  HStackVariants,
+  ViewSpecificStyles
+>(NativeView, config);

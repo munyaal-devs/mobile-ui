@@ -1,7 +1,7 @@
-import type { ViewStyle } from 'react-native';
-import type { SpaceKey } from '@munyaal/mobile-ui';
+import type { TextStyle, ViewStyle } from 'react-native';
+import type { ColorKey, SpaceKey } from '@munyaal/mobile-ui';
 
-export type SpecificStyles = {
+export type ViewSpecificStyles = {
   flex?: ViewStyle['flex'];
   flexDirection?: ViewStyle['flexDirection'];
   direction?: ViewStyle['direction'];
@@ -17,4 +17,8 @@ export type SpecificStyles = {
   columnGap?: ViewStyle['columnGap'] | `$${SpaceKey}`;
   gap?: ViewStyle['gap'] | `$${SpaceKey}`;
   position?: ViewStyle['position'];
+};
+
+export type TextSpecificStyles = {
+  color?: TextStyle['color'] | `$${ColorKey}`;
 };
