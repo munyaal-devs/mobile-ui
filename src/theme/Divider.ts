@@ -9,7 +9,7 @@ export type DividerVariants = {
   };
 };
 
-const config: ComponentConfiguration<DividerVariants> = {
+const config: ComponentConfiguration<ViewProps, DividerVariants> = {
   backgroundColor: '$background200',
 
   variants: {

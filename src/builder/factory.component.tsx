@@ -17,7 +17,7 @@ export function factoryComponent<
   S,
 >(
   StyledComponent: ComponentType<PropsWithChildren<BasicProps>>,
-  configuration: ComponentConfiguration<V>
+  configuration: ComponentConfiguration<P, V>
 ) {
   const FunctionalComponent: FC<
     PropsWithChildren<ComponentProps<V> & P & S>

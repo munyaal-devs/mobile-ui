@@ -16,7 +16,7 @@ export type VStackVariants = {
   };
 };
 
-const config: ComponentConfiguration<VStackVariants> = {
+const config: ComponentConfiguration<ViewProps, VStackVariants> = {
   flexDirection: 'column',
   variants: {
     space: {

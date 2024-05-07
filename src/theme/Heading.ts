@@ -17,30 +17,30 @@ export type HeadingVariants = {
   };
 };
 
-const config: ComponentConfiguration<HeadingVariants> = {
+const config: ComponentConfiguration<TextProps, HeadingVariants> = {
   color: '$text900',
   letterSpacing: '$md',
   variants: {
     size: {
       xs: {
+        fontSize: '$lg',
+        lineHeight: '$lg',
+      },
+      sm: {
         fontSize: '$xl',
         lineHeight: '$xl',
       },
-      sm: {
+      md: {
         fontSize: '$2xl',
         lineHeight: '$2xl',
       },
-      md: {
+      lg: {
         fontSize: '$3xl',
         lineHeight: '$3xl',
       },
-      lg: {
+      xl: {
         fontSize: '$4xl',
         lineHeight: '$4xl',
-      },
-      xl: {
-        fontSize: '$5xl',
-        lineHeight: '$5xl',
       },
     },
     weight: {

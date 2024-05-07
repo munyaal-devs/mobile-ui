@@ -1,7 +1,11 @@
-import type { BasicSizes, ComponentConfiguration, Styles } from '../utils';
+import type {
+  BasicSizes,
+  ComponentConfiguration,
+  Styles,
+  ViewSpecificStyles,
+} from '../utils';
 import { factoryComponent } from '../builder';
 import { View as NativeView, type ViewProps } from 'react-native';
-import type { ViewSpecificStyles } from '../utils';
 
 export type HStackVariants = {
   space: {
@@ -12,7 +16,7 @@ export type HStackVariants = {
   };
 };
 
-const config: ComponentConfiguration<HStackVariants> = {
+const config: ComponentConfiguration<ViewProps, HStackVariants> = {
   flexDirection: 'row',
   variants: {
     space: {

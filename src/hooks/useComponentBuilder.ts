@@ -4,18 +4,20 @@ import type {
   ComponentProps,
 } from './../utils/types';
 import { type PropsWithChildren, useCallback, useMemo } from 'react';
-import { useUIProvider } from '../providers/UIProvider';
+import { useThemeProvider } from '../providers/ThemeProvider';
 import {
   propertyTokensMap,
   specificStyleTokensMap,
 } from '../utils/property.token.map';
+import { useToken } from './useToken';
+import { StyleSheet } from 'react-native';
 
 export function useComponentBuilder<
   P extends BasicProps,
   V extends Record<string, any>,
 >(
   props: Omit<PropsWithChildren<ComponentProps<V> & P>, 'children'>,
-  configuration: ComponentConfiguration<V>
+  configuration: ComponentConfiguration<P, V>
 ) {
   const {
     defaultProps,
@@ -23,25 +25,27 @@ export function useComponentBuilder<
     ...generalStyles
   } = configuration;
 
-  const { aliases: configuredAliases, ...ui } = useUIProvider();
+  const { aliases: configuredAliases } = useThemeProvider();
+
+  const { fetch: fetchToken } = useToken();
 
   /**
    * Realiza mezcla de las propiedades por defecto y las propiedades asignadas por el desarrollador,
    * se le asigna un peso más grande a las propiedades escritas por el desarrollador
    * */
   const mixProperties = useCallback(() => {
-    const propsMap = new Map<string, string | number>();
+    const propsMap = new Map<string, string | number | any>();
 
     for (const key in defaultProps) {
-      const value = `${defaultProps[key] as any}`;
+      const value = defaultProps[key];
 
-      propsMap.set(key, `${value}`);
+      propsMap.set(key, value);
     }
 
     for (const key in props) {
       const value: any = props[key];
 
-      propsMap.set(key, `${value}`);
+      propsMap.set(key, value);
     }
 
     return propsMap;
@@ -51,12 +55,12 @@ export function useComponentBuilder<
    * Crear un mapa de los estilos generales
    * */
   const createDefaultStyles = useCallback(() => {
-    const styleMap = new Map<string, string | number>();
+    const styleMap = new Map<string, string | number | any>();
 
     for (const key in generalStyles) {
       const value = generalStyles[key];
 
-      styleMap.set(key, `${value}`);
+      styleMap.set(key, value);
     }
 
     return styleMap;
@@ -67,14 +71,14 @@ export function useComponentBuilder<
    * */
   const createStyles = useCallback(
     (
-      defaultStyles: Map<string, string | number>,
-      mixedProperties: Map<string, string | number>
+      defaultStyles: Map<string, string | number | any>,
+      mixedProperties: Map<string, string | number | any>
     ) => {
       const aliases = Object.assign({}, configuredAliases);
 
       const variants = Object.assign({}, configuredVariants);
 
-      mixedProperties.forEach((value: string | number, key: string) => {
+      mixedProperties.forEach((value: string | number | any, key: string) => {
         if (variants.hasOwnProperty(key)) {
           const variant = variants[key];
 
@@ -84,7 +88,7 @@ export function useComponentBuilder<
             for (const variantStyleKey in variantStyle) {
               const variantStyleValue = variantStyle[variantStyleKey];
 
-              defaultStyles.set(variantStyleKey, `${variantStyleValue}`);
+              defaultStyles.set(variantStyleKey, variantStyleValue);
             }
           }
         }
@@ -105,36 +109,26 @@ export function useComponentBuilder<
    * En caso de asignar estilos del tema, esta funciona los busca y los asigna a la hoja de estilos
    * */
   const applyTheme = useCallback(
-    (styleMap: Map<string, string | number>) => {
+    (styleMap: Map<string, string | number | any>) => {
       const custom: BasicProps['style'] = {};
 
       styleMap.forEach((value, key) => {
-        if (typeof value === 'string' && value.startsWith('$')) {
-          value = value.replace('$', '');
+        const token = propertyTokensMap.get(key);
 
-          const token = propertyTokensMap.get(key);
-
-          if (token && ui.hasOwnProperty(token)) {
-            const tokens = ui[token];
-
-            if (tokens.hasOwnProperty(value)) {
-              const tokenValue = tokens[value];
-
-              Object.assign(custom, { [key]: tokenValue });
-            }
-          }
-        } else {
-          Object.assign(custom, { [key]: value });
+        if (token && typeof value === 'string') {
+          value = fetchToken(token, value);
         }
+
+        Object.assign(custom, { [key]: value });
       });
 
       return custom;
     },
-    [ui]
+    [fetchToken]
   );
 
   const mergeStyles = useCallback(
-    (styles: Map<string, string | number>) => {
+    (styles: Map<string, string | number | any>) => {
       const customProps: any = Object.assign({}, props.style);
 
       for (const key in customProps) {
@@ -145,11 +139,9 @@ export function useComponentBuilder<
 
       for (const key in props) {
         if (specificStyleTokensMap.has(key)) {
-          const value: any = props[key];
+          const value = props[key];
 
-          if (typeof value === 'string' || typeof value === 'number') {
-            styles.set(key, value);
-          }
+          styles.set(key, value);
         }
       }
 
@@ -170,7 +162,13 @@ export function useComponentBuilder<
 
     const mergedStyles = mergeStyles(styleMap);
 
-    return applyTheme(mergedStyles);
+    const payload = applyTheme(mergedStyles);
+
+    const style = StyleSheet.create({
+      container: payload,
+    });
+
+    return style.container;
   }, [
     mixProperties,
     createStyles,
@@ -184,6 +182,14 @@ export function useComponentBuilder<
 
     delete customProps.style;
 
+    for (const key in defaultProps) {
+      const value = defaultProps[key];
+
+      if (!customProps?.hasOwnProperty(key)) {
+        Object.assign(customProps, { [key]: value });
+      }
+    }
+
     for (const key in customProps) {
       if (
         configuredVariants?.hasOwnProperty(key) ||
@@ -195,7 +201,7 @@ export function useComponentBuilder<
     }
 
     return customProps;
-  }, [props, configuredAliases, configuredVariants]);
+  }, [props, defaultProps, configuredAliases, configuredVariants]);
 
   return {
     styles,

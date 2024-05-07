@@ -1,4 +1,4 @@
-import type { UIStateKey } from '../providers/UIProvider/types';
+import type { UIStateKey } from '../providers/ThemeProvider/types';
 
 const colors: UIStateKey = 'colors';
 const borderWidths: UIStateKey = 'borderWidths';
@@ -54,6 +54,7 @@ propertyTokensMap.set('borderBlockEndColor', colors);
 propertyTokensMap.set('borderBlockStartColor', colors);
 propertyTokensMap.set('borderStartColor', colors);
 propertyTokensMap.set('borderEndColor', colors);
+propertyTokensMap.set('elevation', borderWidths);
 propertyTokensMap.set('borderWidth', borderWidths);
 propertyTokensMap.set('borderTopWidth', borderWidths);
 propertyTokensMap.set('borderRightWidth', borderWidths);
@@ -74,9 +75,12 @@ propertyTokensMap.set('borderStartEndRadius', borderRadius);
 propertyTokensMap.set('borderStartStartRadius', borderRadius);
 propertyTokensMap.set('borderEndEndRadius', borderRadius);
 propertyTokensMap.set('borderEndStartRadius', borderRadius);
+propertyTokensMap.set('shadowRadius', borderRadius);
 propertyTokensMap.set('color', colors);
 propertyTokensMap.set('backgroundColor', colors);
+propertyTokensMap.set('shadowColor', colors);
 propertyTokensMap.set('opacity', opacity);
+propertyTokensMap.set('shadowOpacity', opacity);
 
 export const specificStyleTokensMap: Map<string, string> = new Map<
   string,

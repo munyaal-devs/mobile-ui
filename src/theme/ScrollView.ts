@@ -5,7 +5,7 @@ import {
 } from 'react-native';
 import type { ComponentConfiguration } from '../utils';
 
-const config: ComponentConfiguration<{}> = {};
+const config: ComponentConfiguration<ScrollViewProps, {}> = {};
 
 export const ScrollView = factoryComponent<ScrollViewProps, {}, {}>(
   NativeScrollView,

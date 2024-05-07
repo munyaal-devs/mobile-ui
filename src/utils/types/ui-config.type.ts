@@ -61,7 +61,7 @@ export type ComponentProps<V> = {
  * Define el tipo de estilo de un componente con variaciones.
  * @template S - Tipo de estilo base (ViewStyle, TextStyle, o ImageStyle)
  */
-export type ComponentConfiguration<V> = Styles & {
+export type ComponentConfiguration<P, V> = Styles & {
   variants?: V;
-  defaultProps?: ComponentProps<V>;
+  defaultProps?: ComponentProps<V> & P;
 };

@@ -17,7 +17,7 @@ export type TextVariants = {
   };
 };
 
-const config: ComponentConfiguration<TextVariants> = {
+const config: ComponentConfiguration<TextProps, TextVariants> = {
   color: '$text800',
   letterSpacing: '$md',
   variants: {

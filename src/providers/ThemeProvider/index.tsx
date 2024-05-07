@@ -12,12 +12,12 @@ const initialState: Partial<UIState> = {};
 
 export const Context = createContext<UIState>(initialState as UIState);
 
-type UIProviderProps = {
+type ThemeProviderProps = {
   config: Config;
   theme?: ThemeMode;
 };
 
-const UIProvider: FC<PropsWithChildren<UIProviderProps>> = (props) => {
+const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = (props) => {
   const { theme = 'light', config, children } = props;
 
   const value: UIState = useMemo(() => {
@@ -36,6 +36,6 @@ const UIProvider: FC<PropsWithChildren<UIProviderProps>> = (props) => {
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
 
-export const useUIProvider = () => useContext(Context);
+export const useThemeProvider = () => useContext(Context);
 
-export default UIProvider;
+export default ThemeProvider;
