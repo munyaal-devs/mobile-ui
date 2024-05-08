@@ -19,7 +19,6 @@ export type TextVariants = {
 
 const config: ComponentConfiguration<TextProps, TextVariants> = {
   color: '$text800',
-  letterSpacing: '$md',
   variants: {
     size: {
       xs: {

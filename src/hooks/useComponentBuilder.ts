@@ -189,7 +189,6 @@ export function useComponentBuilder<
         Object.assign(customProps, { [key]: value });
       }
     }
-
     for (const key in customProps) {
       if (
         configuredVariants?.hasOwnProperty(key) ||
@@ -199,7 +198,6 @@ export function useComponentBuilder<
         delete customProps[key];
       }
     }
-
     return customProps;
   }, [props, defaultProps, configuredAliases, configuredVariants]);
 

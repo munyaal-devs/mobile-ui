@@ -32,15 +32,15 @@ const config: ComponentConfiguration<TouchableOpacityProps, ButtonVariants> = {
     size: {
       sm: {
         paddingVertical: '$2',
-        paddingHorizontal: '$2',
+        paddingHorizontal: '$2.5',
       },
       md: {
         paddingVertical: '$2.5',
-        paddingHorizontal: '$2.5',
+        paddingHorizontal: '$3',
       },
       lg: {
         paddingVertical: '$3',
-        paddingHorizontal: '$3',
+        paddingHorizontal: '$3.5',
       },
     },
     action: {

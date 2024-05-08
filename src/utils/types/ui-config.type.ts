@@ -33,7 +33,7 @@ export type ExtendWithStrings<T> = T extends infer E
  * Define los props básicos de définen un componente de react native
  * Puede ser ViewProps, ImageProps o TextProps.
  */
-export type BasicProps = ImageProps | TextProps | ViewProps;
+export type BasicProps = ImageProps | TextProps | ViewProps | any;
 
 /**
  * Define los estilos básicos de un componente de react native
@@ -63,5 +63,5 @@ export type ComponentProps<V> = {
  */
 export type ComponentConfiguration<P, V> = Styles & {
   variants?: V;
-  defaultProps?: ComponentProps<V> & P;
+  defaultProps?: ComponentProps<V> & Partial<P>;
 };

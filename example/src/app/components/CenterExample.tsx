@@ -7,7 +7,7 @@ const CenterExample: FC = () => {
       <Heading>Center Component</Heading>
 
       <Center bg={'$secondary500'} w={'$full'} h={'$40'} rounded={'$md'}>
-        <Text color={'$text200'} size={'xl'}>
+        <Text color={'$text50'} size={'xl'}>
           This is the center.
         </Text>
       </Center>

@@ -8,9 +8,9 @@ const IconExample = () => {
       <Heading>Icon Component</Heading>
 
       <View flexDirection={'row'} justifyContent={'space-around'} gap={'$4'}>
-        <Icon path={mdiReact} size={'$12'} color={'$secondary500'} />
-        <Icon path={mdiReact} size={'$12'} color={'$primary500'} />
-        <Icon path={mdiReact} size={'$12'} />
+        <Icon path={mdiReact} size={'sm'} fill={'$secondary500'} />
+        <Icon path={mdiReact} size={'md'} fill={'$primary500'} />
+        <Icon path={mdiReact} size={'xl'} />
       </View>
     </View>
   );

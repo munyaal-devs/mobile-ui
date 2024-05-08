@@ -19,7 +19,6 @@ export type HeadingVariants = {
 
 const config: ComponentConfiguration<TextProps, HeadingVariants> = {
   color: '$text900',
-  letterSpacing: '$md',
   variants: {
     size: {
       xs: {

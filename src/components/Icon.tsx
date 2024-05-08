@@ -1,31 +1,30 @@
-import React, { type FC, useMemo } from 'react';
+import React, { type FC, memo, useMemo } from 'react';
 import { Path, Svg } from 'react-native-svg';
-import { View } from '../theme';
-import type { ColorKey, SizeKey } from '../utils';
+import { View, type ViewProps } from 'react-native';
+import type { ColorKey } from '../utils';
 import { useToken } from '../hooks';
 
-type IconProps = {
+export type IconProps = {
   path: string;
-  size?: `$${SizeKey}`;
-  color?: `$${ColorKey}`;
-};
+  fill?: `$${ColorKey}`;
+} & ViewProps;
 
 const Icon: FC<IconProps> = (props) => {
-  const { path, size = '$8', color = '$text800' } = props;
+  const { path, fill = '$text900', ...viewProps } = props;
 
   const { fetch } = useToken();
 
-  const fill = useMemo(() => {
-    return fetch('colors', `${color}`);
-  }, [fetch, color]);
+  const color = useMemo(() => {
+    return fetch('colors', `${fill}`);
+  }, [fetch, fill]);
 
   return (
-    <View w={size} h={size}>
+    <View {...viewProps}>
       <Svg height="100%" width="100%" viewBox="0 0 24 24">
-        <Path d={path} fill={fill} />
+        <Path d={path} fill={color} />
       </Svg>
     </View>
   );
 };
 
-export default Icon;
+export default memo(Icon);
