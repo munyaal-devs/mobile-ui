@@ -177,6 +177,9 @@ export function useComponentBuilder<
     mergeStyles,
   ]);
 
+  /**
+   * Propiedades limpias del componente
+   * */
   const properties = useMemo(() => {
     const customProps = Object.assign({}, props);
 

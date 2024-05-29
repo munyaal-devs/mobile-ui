@@ -13,11 +13,11 @@ import type {
 
 export function factoryComponent<
   P extends BasicProps,
-  V extends Record<string, any>,
-  S,
+  V extends Record<string, any> = {},
+  S = {},
 >(
   StyledComponent: ComponentType<PropsWithChildren<BasicProps>>,
-  configuration: ComponentConfiguration<P, V>
+  configuration: ComponentConfiguration<P, V> = {}
 ) {
   const FunctionalComponent: FC<
     PropsWithChildren<ComponentProps<V> & P & S>

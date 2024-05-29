@@ -1,8 +1,5 @@
+import { TouchableOpacity, type TouchableOpacityProps } from 'react-native';
 import { factoryComponent } from '../builder';
-import {
-  TouchableOpacity as NativeTouchableOpacity,
-  type TouchableOpacityProps,
-} from 'react-native';
 import type {
   ComponentConfiguration,
   Styles,
@@ -27,7 +24,6 @@ const config: ComponentConfiguration<TouchableOpacityProps, ButtonVariants> = {
   justifyContent: 'center',
   alignItems: 'center',
   gap: '$2',
-
   variants: {
     size: {
       sm: {
@@ -66,4 +62,4 @@ export const Button = factoryComponent<
   TouchableOpacityProps,
   ButtonVariants,
   ViewSpecificStyles
->(NativeTouchableOpacity, config);
+>(TouchableOpacity, config);

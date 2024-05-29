@@ -1,13 +1,10 @@
+import { Text, type TextProps } from 'react-native';
+import { factoryComponent } from '../builder';
 import type {
   ComponentConfiguration,
   Styles,
   TextSpecificStyles,
 } from '../utils';
-import { factoryComponent } from '../builder';
-import {
-  Text as TextNative,
-  type TextProps as TextNativeProps,
-} from 'react-native';
 
 export type ButtonTextVariants = {
   size: {
@@ -17,7 +14,7 @@ export type ButtonTextVariants = {
   };
 };
 
-const config: ComponentConfiguration<TextNativeProps, ButtonTextVariants> = {
+const config: ComponentConfiguration<TextProps, ButtonTextVariants> = {
   color: '$text50',
   fontWeight: '$light',
   variants: {
@@ -42,7 +39,7 @@ const config: ComponentConfiguration<TextNativeProps, ButtonTextVariants> = {
 };
 
 export const ButtonText = factoryComponent<
-  TextNativeProps,
+  TextProps,
   ButtonTextVariants,
   TextSpecificStyles
->(TextNative, config);
+>(Text, config);

@@ -1,3 +1,5 @@
+import { Text as TextNative, type TextProps } from 'react-native';
+import { factoryComponent } from '../builder';
 import type {
   BasicSizes,
   ComponentConfiguration,
@@ -5,8 +7,6 @@ import type {
   Styles,
   TextSpecificStyles,
 } from '../utils';
-import { factoryComponent } from '../builder';
-import { Text as TextNative, type TextProps } from 'react-native';
 
 export type TextVariants = {
   size: {

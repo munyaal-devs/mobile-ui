@@ -43,4 +43,4 @@ const config: ComponentConfiguration<IconProps, IconVariants> = {
   },
 };
 
-export const Icon = factoryComponent<IconProps, IconVariants, {}>(Svg, config);
+export const Icon = factoryComponent<IconProps, IconVariants>(Svg, config);

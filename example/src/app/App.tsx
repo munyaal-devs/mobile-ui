@@ -18,7 +18,7 @@ export default function App() {
             <View flexDirection={'column'} gap={'$4'} mb={'$8'}>
               <Heading>I am a Heading</Heading>
               <Divider />
-              <Text>
+              <Text color={'$text800'}>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
                 consequatur debitis doloribus error facere, ipsa molestiae odit
                 quisquam, quos sed tempora totam. Cum dolorum error, et hic
@@ -33,9 +33,9 @@ export default function App() {
               <Divider />
               <IconExample />
               <Divider />
-              <ButtonExample />
-              <Divider />
               <InputExample />
+              <Divider />
+              <ButtonExample />
               <Divider />
             </View>
           </ScrollView>

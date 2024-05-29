@@ -5,6 +5,9 @@ import type { UIState } from '../providers/ThemeProvider/types';
 export const useToken = () => {
   const uiKit = useThemeProvider();
 
+  /**
+   * Busca el valor de una clave del tema
+   * */
   const fetch = useCallback(
     (token: string | keyof UIState, value: string | number) => {
       if (typeof value === 'string' && value.startsWith('$')) {

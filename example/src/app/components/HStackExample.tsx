@@ -6,11 +6,11 @@ const HStackExample: FC = () => {
     <View flexDirection={'column'} gap={'$4'}>
       <Heading>HStack Component</Heading>
 
-      <HStack space={'lg'}>
+      <HStack space={'xl'}>
         <View
           w={'$24'}
           h={'$24'}
-          bg={'$secondary500'}
+          bg={'$primary500'}
           justifyContent={'center'}
           alignItems={'center'}
           rounded={'$md'}

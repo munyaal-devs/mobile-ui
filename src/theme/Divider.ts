@@ -30,4 +30,7 @@ const config: ComponentConfiguration<ViewProps, DividerVariants> = {
   },
 };
 
-export const Divider = factoryComponent<ViewProps, {}, {}>(NativeView, config);
+export const Divider = factoryComponent<ViewProps, DividerVariants>(
+  NativeView,
+  config
+);

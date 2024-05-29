@@ -1,19 +1,32 @@
-import type { ComponentConfiguration, TextSpecificStyles } from '../utils';
+import { View as ViewNative, type ViewProps } from 'react-native';
 import { factoryComponent } from '../builder';
-import {
-  TextInput as TextInputNative,
-  type TextInputProps,
-} from 'react-native';
+import type { ComponentConfiguration, Styles } from '../utils';
 
-export type InputVariants = {};
-
-const config: ComponentConfiguration<TextInputProps, InputVariants> = {
-  variants: {},
-  defaultProps: {},
+export type FormControlInputVariants = {
+  isInvalid: {
+    true: Styles;
+  };
 };
 
-export const Input = factoryComponent<
-  TextInputProps,
-  InputVariants,
-  TextSpecificStyles
->(TextInputNative, config);
+const config: ComponentConfiguration<ViewProps, FormControlInputVariants> = {
+  borderBottomWidth: '$1',
+  borderBottomColor: '$primary500',
+  paddingVertical: '$1',
+  paddingHorizontal: '$1',
+  flexDirection: 'row',
+  alignItems: 'center',
+  overflow: 'hidden',
+  gap: '$2',
+  variants: {
+    isInvalid: {
+      true: {
+        borderBottomColor: '$error600',
+      },
+    },
+  },
+};
+
+export const Input = factoryComponent<ViewProps, FormControlInputVariants>(
+  ViewNative,
+  config
+);

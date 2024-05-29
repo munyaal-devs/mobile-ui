@@ -1,4 +1,4 @@
-import { mdiReact } from '@mdi/js';
+import { mdiReact, mdiAngular } from '@mdi/js';
 import { Heading, Icon, View } from '@munyaal/mobile-ui';
 import * as React from 'react';
 
@@ -7,10 +7,14 @@ const IconExample = () => {
     <View flexDirection={'column'} gap={'$4'}>
       <Heading>Icon Component</Heading>
 
-      <View flexDirection={'row'} justifyContent={'space-around'} gap={'$4'}>
-        <Icon path={mdiReact} size={'sm'} fill={'$secondary500'} />
+      <View
+        flexDirection={'row'}
+        alignItems={'center'}
+        justifyContent={'space-around'}
+      >
+        <Icon path={mdiReact} size={'xs'} fill={'$secondary500'} />
         <Icon path={mdiReact} size={'md'} fill={'$primary500'} />
-        <Icon path={mdiReact} size={'xl'} />
+        <Icon path={mdiAngular} size={'xl'} fill={'$text600'} />
       </View>
     </View>
   );

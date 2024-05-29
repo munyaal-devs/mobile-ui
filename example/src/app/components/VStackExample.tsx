@@ -6,7 +6,7 @@ const VStackExample: FC = () => {
     <View flexDirection={'column'} gap={'$4'}>
       <Heading>VStack Component</Heading>
 
-      <VStack space={'lg'}>
+      <VStack space={'xl'}>
         <View
           w={'$24'}
           h={'$24'}

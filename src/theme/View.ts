@@ -1,5 +1,5 @@
-import { factoryComponent } from '../builder';
 import { View as NativeView, type ViewProps } from 'react-native';
+import { factoryComponent } from '../builder';
 import type {
   BasicSizes,
   ComponentConfiguration,

@@ -15,7 +15,7 @@ const ButtonExample: FC = () => {
 
       <View>
         <Button size={'sm'} w={'auto'}>
-          <ButtonIcon size={'sm'} path={mdiContentSave} />
+          {/*<ButtonIcon size={'sm'} path={mdiContentSave} />*/}
           <ButtonText size={'sm'}>Hola mundo</ButtonText>
           <ButtonIcon size={'sm'} path={mdiContentSave} />
         </Button>
@@ -23,7 +23,7 @@ const ButtonExample: FC = () => {
         <Button action={'secondary'}>
           <ButtonIcon fill={'$primary500'} path={mdiContentSave} />
           <ButtonText color={'$primary500'}>Hola mundo</ButtonText>
-          <ButtonIcon fill={'$primary500'} path={mdiContentSave} />
+          {/*<ButtonIcon fill={'$primary500'} path={mdiContentSave} />*/}
         </Button>
 
         <Button size={'lg'}>

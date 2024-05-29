@@ -1,6 +1,6 @@
 import { type ComponentConfiguration, type Styles } from '../utils';
-import { default as Svg, type IconProps } from '../components/Icon';
 import { factoryComponent } from '../builder';
+import { default as Svg, type IconProps } from '../components/Icon';
 
 export type ButtonIconVariants = {
   size: {
@@ -33,7 +33,7 @@ const config: ComponentConfiguration<IconProps, ButtonIconVariants> = {
   },
 };
 
-export const ButtonIcon = factoryComponent<IconProps, ButtonIconVariants, {}>(
+export const ButtonIcon = factoryComponent<IconProps, ButtonIconVariants>(
   Svg,
   config
 );

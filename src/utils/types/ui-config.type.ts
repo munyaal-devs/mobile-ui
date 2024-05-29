@@ -45,7 +45,7 @@ export type BasicStyles = ImageStyle | TextStyle | ViewStyle;
  * Define una unión de los tipos de estilo que quieres permitir.
  * Puede ser ViewStyle, TextStyle o ImageStyle.
  */
-export type Styles = ExtendWithStrings<BasicProps['style']>;
+export type Styles = ExtendWithStrings<BasicStyles>;
 
 export type IsBoolean = 'true' | 'false';
 
@@ -58,10 +58,15 @@ export type ComponentProps<V> = {
 } & Partial<AliasStyle>;
 
 /**
+ * Sin variantes
+ * */
+export type EmptyVariants = {};
+
+/**
  * Define el tipo de estilo de un componente con variaciones.
  * @template S - Tipo de estilo base (ViewStyle, TextStyle, o ImageStyle)
  */
-export type ComponentConfiguration<P, V> = Styles & {
+export type ComponentConfiguration<P, V = {}> = Styles & {
   variants?: V;
   defaultProps?: ComponentProps<V> & Partial<P>;
 };
