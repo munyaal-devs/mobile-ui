@@ -1,4 +1,4 @@
-import type { Aliases, Colors, ThemeMode, Tokens } from '../../utils/types';
+import type { Aliases, Colors, ThemeMode, Tokens } from '../../types';
 
 export type UIState = Tokens & {
   theme: ThemeMode;
@@ -7,3 +7,13 @@ export type UIState = Tokens & {
 };
 
 export type UIStateKey = keyof UIState;
+
+export type ThemeColors = {
+  [key in ThemeMode]: Colors;
+};
+
+export type ThemeProviderProps = {
+  theme: ThemeMode;
+  colors: ThemeColors;
+  components: any;
+};

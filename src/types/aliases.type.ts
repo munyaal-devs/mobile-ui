@@ -1,4 +1,4 @@
-import type { ViewStyle as NativeViewStyle } from 'react-native/Libraries/StyleSheet/StyleSheetTypes';
+import type { ViewStyle as NativeViewStyle } from 'react-native';
 import type { BorderRadiusKey, SizeKey, SpaceKey } from './tokens.type';
 import type { ColorKey } from './theme.type';
 

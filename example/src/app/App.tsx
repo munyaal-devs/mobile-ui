@@ -6,7 +6,7 @@ import CenterExample from './components/CenterExample';
 import IconExample from './components/IconExample';
 import ButtonExample from './components/ButtonExample';
 import MainView from './components/MainView';
-import MainProvider from './components/MainProvider';
+import MainProvider from './theme/MainProvider';
 import InputExample from './components/InputExample';
 
 export default function App() {

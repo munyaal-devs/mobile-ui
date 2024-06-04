@@ -2,7 +2,7 @@ import type {
   BasicProps,
   ComponentConfiguration,
   ComponentProps,
-} from './../utils/types';
+} from '../types';
 import { type PropsWithChildren, useCallback, useMemo } from 'react';
 import { useThemeProvider } from '../providers/ThemeProvider';
 import {

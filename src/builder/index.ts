@@ -1,2 +1,4 @@
-export * from './default.config';
+export * from './aliases';
+export * from './tokens';
+
 export * from './factory.component';

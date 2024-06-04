@@ -1,4 +1,4 @@
-import { type UIState } from './types';
+import { type ThemeProviderProps, type UIState } from './types';
 import React, {
   createContext,
   type FC,
@@ -6,24 +6,18 @@ import React, {
   useContext,
   useMemo,
 } from 'react';
-import type { Config, ThemeMode } from '../../utils';
+
+import { aliases, tokens } from '../../builder';
 
 const initialState: Partial<UIState> = {};
 
 export const Context = createContext<UIState>(initialState as UIState);
 
-type ThemeProviderProps = {
-  config: Config;
-  theme?: ThemeMode;
-};
-
 const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = (props) => {
-  const { theme = 'light', config, children } = props;
+  const { theme, colors: themeColors, children } = props;
 
   const value: UIState = useMemo(() => {
-    const { aliases, tokens, themes } = config;
-
-    const colors = themes[theme].colors;
+    const colors = themeColors[theme];
 
     return {
       aliases,
@@ -31,7 +25,7 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = (props) => {
       colors,
       ...tokens,
     };
-  }, [theme, config]);
+  }, [theme, themeColors]);
 
   return <Context.Provider value={value}>{children}</Context.Provider>;
 };
