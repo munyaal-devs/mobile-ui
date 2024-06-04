@@ -1,5 +1,4 @@
-import type { Colors } from '@munyaal/mobile-ui';
-import type { ThemeColors } from '../../../../src/providers/ThemeProvider/types'; // Clear theme colors.
+import type { Colors, ThemeColors } from '@munyaal/mobile-ui';
 
 export const lightThemeColors: Colors = {
   primary50: '#e6f3fa',

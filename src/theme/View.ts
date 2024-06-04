@@ -5,7 +5,7 @@ import type {
   ComponentConfiguration,
   Styles,
   ViewSpecificStyles,
-} from '../utils';
+} from '../types';
 
 export type ViewVariants = {
   shadow: {

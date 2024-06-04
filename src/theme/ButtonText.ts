@@ -4,7 +4,7 @@ import type {
   ComponentConfiguration,
   Styles,
   TextSpecificStyles,
-} from '../utils';
+} from '../types';
 
 export type ButtonTextVariants = {
   size: {

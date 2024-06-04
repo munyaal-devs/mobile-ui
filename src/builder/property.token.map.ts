@@ -1,17 +1,20 @@
-import type { UIStateKey } from '../providers/ThemeProvider/types';
+import type { ThemeProviderStateKey } from '../providers/ThemeProvider/types';
 
-const colors: UIStateKey = 'colors';
-const borderWidths: UIStateKey = 'borderWidths';
-const opacity: UIStateKey = 'opacity';
-const fontSizes: UIStateKey = 'fontSizes';
-const fontWeights: UIStateKey = 'fontWeights';
-const letterSpacings: UIStateKey = 'letterSpacings';
-const lineHeights: UIStateKey = 'lineHeights';
-const borderRadius: UIStateKey = 'borderRadius';
-const sizes: UIStateKey = 'sizes';
-const spaces: UIStateKey = 'spaces';
+const colors: ThemeProviderStateKey = 'colors';
+const borderWidths: ThemeProviderStateKey = 'borderWidths';
+const opacity: ThemeProviderStateKey = 'opacity';
+const fontSizes: ThemeProviderStateKey = 'fontSizes';
+const fontWeights: ThemeProviderStateKey = 'fontWeights';
+const letterSpacings: ThemeProviderStateKey = 'letterSpacings';
+const lineHeights: ThemeProviderStateKey = 'lineHeights';
+const borderRadius: ThemeProviderStateKey = 'borderRadius';
+const sizes: ThemeProviderStateKey = 'sizes';
+const spaces: ThemeProviderStateKey = 'spaces';
 
-export const propertyTokensMap: Map<string, string> = new Map<string, string>();
+export const propertyTokensMap: Map<string, ThemeProviderStateKey> = new Map<
+  string,
+  ThemeProviderStateKey
+>();
 
 propertyTokensMap.set('margin', spaces);
 propertyTokensMap.set('marginTop', spaces);

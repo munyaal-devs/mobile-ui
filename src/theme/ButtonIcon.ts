@@ -1,4 +1,4 @@
-import { type ComponentConfiguration, type Styles } from '../utils';
+import { type ComponentConfiguration, type Styles } from '../types';
 import { factoryComponent } from '../builder';
 import { default as Svg, type IconProps } from '../components/Icon';
 

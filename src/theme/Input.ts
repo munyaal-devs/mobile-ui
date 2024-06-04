@@ -1,6 +1,6 @@
 import { View as ViewNative, type ViewProps } from 'react-native';
 import { factoryComponent } from '../builder';
-import type { ComponentConfiguration, Styles } from '../utils';
+import type { ComponentConfiguration, Styles } from '../types';
 
 export type FormControlInputVariants = {
   isInvalid: {

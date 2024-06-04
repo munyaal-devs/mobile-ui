@@ -4,7 +4,7 @@ import type {
   ComponentConfiguration,
   Styles,
   ViewSpecificStyles,
-} from '../utils';
+} from '../types';
 
 export type ButtonVariants = {
   size: {

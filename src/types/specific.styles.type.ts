@@ -1,5 +1,5 @@
 import type { TextStyle, ViewStyle } from 'react-native';
-import type { ColorKey, SpaceKey } from '@munyaal/mobile-ui';
+import type { ColorKey, SpaceKey } from './../types';
 
 export type ViewSpecificStyles = {
   flex?: ViewStyle['flex'];

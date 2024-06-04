@@ -6,7 +6,7 @@ import type {
   FontWeights,
   Styles,
   TextSpecificStyles,
-} from '../utils';
+} from '../types';
 
 export type TextVariants = {
   size: {

@@ -2,7 +2,7 @@ import {
   type BasicSizes,
   type ComponentConfiguration,
   type Styles,
-} from '../utils';
+} from '../types';
 import { default as Svg, type IconProps } from '../components/Icon';
 import { factoryComponent } from '../builder';
 

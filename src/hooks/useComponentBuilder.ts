@@ -8,8 +8,7 @@ import { useThemeProvider } from '../providers/ThemeProvider';
 import {
   propertyTokensMap,
   specificStyleTokensMap,
-} from '../utils/property.token.map';
-import { useToken } from './useToken';
+} from '../builder/property.token.map';
 import { StyleSheet } from 'react-native';
 
 export function useComponentBuilder<
@@ -19,15 +18,9 @@ export function useComponentBuilder<
   props: Omit<PropsWithChildren<ComponentProps<V> & P>, 'children'>,
   configuration: ComponentConfiguration<P, V>
 ) {
-  const {
-    defaultProps,
-    variants: configuredVariants,
-    ...generalStyles
-  } = configuration;
+  const { defaultProps, variants, ...generalStyles } = configuration;
 
-  const { aliases: configuredAliases } = useThemeProvider();
-
-  const { fetch: fetchToken } = useToken();
+  const { aliases, fetchTokenValue } = useThemeProvider();
 
   /**
    * Realiza mezcla de las propiedades por defecto y las propiedades asignadas por el desarrollador,
@@ -74,12 +67,8 @@ export function useComponentBuilder<
       defaultStyles: Map<string, string | number | any>,
       mixedProperties: Map<string, string | number | any>
     ) => {
-      const aliases = Object.assign({}, configuredAliases);
-
-      const variants = Object.assign({}, configuredVariants);
-
       mixedProperties.forEach((value: string | number | any, key: string) => {
-        if (variants.hasOwnProperty(key)) {
+        if (variants?.hasOwnProperty(key)) {
           const variant = variants[key];
 
           if (variant.hasOwnProperty(value)) {
@@ -102,7 +91,7 @@ export function useComponentBuilder<
 
       return defaultStyles;
     },
-    [configuredAliases, configuredVariants]
+    [aliases, variants]
   );
 
   /**
@@ -116,7 +105,7 @@ export function useComponentBuilder<
         const token = propertyTokensMap.get(key);
 
         if (token && typeof value === 'string') {
-          value = fetchToken(token, value);
+          value = fetchTokenValue(token, value);
         }
 
         Object.assign(custom, { [key]: value });
@@ -124,7 +113,7 @@ export function useComponentBuilder<
 
       return custom;
     },
-    [fetchToken]
+    [fetchTokenValue]
   );
 
   const mergeStyles = useCallback(
@@ -194,15 +183,15 @@ export function useComponentBuilder<
     }
     for (const key in customProps) {
       if (
-        configuredVariants?.hasOwnProperty(key) ||
-        configuredAliases?.hasOwnProperty(key) ||
+        variants?.hasOwnProperty(key) ||
+        aliases?.hasOwnProperty(key) ||
         specificStyleTokensMap.has(key)
       ) {
         delete customProps[key];
       }
     }
     return customProps;
-  }, [props, defaultProps, configuredAliases, configuredVariants]);
+  }, [props, defaultProps, aliases, variants]);
 
   return {
     styles,

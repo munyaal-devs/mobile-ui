@@ -1,8 +1,8 @@
 import React, { type FC, memo, useMemo } from 'react';
 import { Path, Svg } from 'react-native-svg';
 import { View, type ViewProps } from 'react-native';
-import type { ColorKey } from '../utils';
-import { useToken } from '../hooks';
+import type { ColorKey } from '../types';
+import { useThemeProvider } from '../providers/ThemeProvider';
 
 export type IconProps = {
   path: string;
@@ -12,11 +12,11 @@ export type IconProps = {
 const Icon: FC<IconProps> = (props) => {
   const { path, fill = '$text900', ...viewProps } = props;
 
-  const { fetch } = useToken();
+  const { fetchTokenValue } = useThemeProvider();
 
   const color = useMemo(() => {
-    return fetch('colors', `${fill}`);
-  }, [fetch, fill]);
+    return `${fetchTokenValue('colors', `${fill}`)}`;
+  }, [fetchTokenValue, fill]);
 
   return (
     <View {...viewProps}>

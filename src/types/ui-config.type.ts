@@ -1,5 +1,4 @@
-import type { AliasStyle } from './aliases.type';
-// import type { Tokens } from './tokens.type';
+import type { AliasStyle } from './aliases.type'; // import type { Tokens } from './tokens.type';
 // import type { Themes } from './theme.type';
 import type {
   ImageProps,
@@ -61,7 +60,7 @@ export type ComponentProps<V> = {
  * Define el tipo de estilo de un componente con variaciones.
  * @template S - Tipo de estilo base (ViewStyle, TextStyle, o ImageStyle)
  */
-export type ComponentConfiguration<P, V = {}> = Styles & {
+export type ComponentConfiguration<P, V extends Object = {}> = Styles & {
   variants?: V;
   defaultProps?: ComponentProps<V> & Partial<P>;
 };

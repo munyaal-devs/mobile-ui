@@ -3,7 +3,7 @@ import {
   type TextInputProps,
 } from 'react-native';
 import { factoryComponent } from '../builder';
-import type { ComponentConfiguration } from '../utils';
+import type { ComponentConfiguration } from '../types';
 
 const config: ComponentConfiguration<TextInputProps> = {
   flex: 1,

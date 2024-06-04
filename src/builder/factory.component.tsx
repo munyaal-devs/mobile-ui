@@ -9,7 +9,7 @@ import type {
   BasicProps,
   ComponentConfiguration,
   ComponentProps,
-} from '../utils';
+} from '../types';
 
 export function factoryComponent<
   P extends BasicProps,

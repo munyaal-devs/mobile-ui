@@ -1,6 +1,6 @@
 import { Text, type TextProps } from 'react-native';
 import { factoryComponent } from '../builder';
-import type { ComponentConfiguration } from '../utils';
+import type { ComponentConfiguration } from '../types';
 
 const config: ComponentConfiguration<TextProps> = {
   color: '$text800',
