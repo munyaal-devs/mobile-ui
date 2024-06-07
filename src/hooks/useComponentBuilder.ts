@@ -1,26 +1,24 @@
 import type {
-  BasicProps,
-  ComponentConfiguration,
+  ComponentConfigurationsKey,
   ComponentProps,
+  ComponentStyle,
 } from '../types';
-import { type PropsWithChildren, useCallback, useMemo } from 'react';
-import { useThemeProvider } from '../providers/ThemeProvider';
-import {
-  propertyTokensMap,
-  specificStyleTokensMap,
-} from '../builder/property.token.map';
+import { useCallback, useMemo } from 'react';
+import { useThemeToolsProvider } from '../providers/ThemeProvider';
+import { aliasStyleMap, propertyStyleMap, specificStyleMap } from '../config';
 import { StyleSheet } from 'react-native';
 
-export function useComponentBuilder<
-  P extends BasicProps,
-  V extends Record<string, any>,
->(
-  props: Omit<PropsWithChildren<ComponentProps<V> & P>, 'children'>,
-  configuration: ComponentConfiguration<P, V>
+export function useComponentBuilder<P extends ComponentProps>(
+  componentName: ComponentConfigurationsKey,
+  props: Omit<P, 'children'>
 ) {
-  const { defaultProps, variants, ...generalStyles } = configuration;
+  const { fetchTokenValue, fetchComponentConfiguration } =
+    useThemeToolsProvider();
 
-  const { aliases, fetchTokenValue } = useThemeProvider();
+  const { defaultProps, variants, ...generalStyles } = useMemo(
+    () => fetchComponentConfiguration(componentName),
+    [fetchComponentConfiguration, componentName]
+  );
 
   /**
    * Realiza mezcla de las propiedades por defecto y las propiedades asignadas por el desarrollador,
@@ -82,16 +80,16 @@ export function useComponentBuilder<
           }
         }
 
-        if (aliases.hasOwnProperty(key)) {
-          const aliasStyle = aliases[key];
+        const aliasStyle = aliasStyleMap.get(key);
 
+        if (aliasStyle) {
           defaultStyles.set(aliasStyle, value);
         }
       });
 
       return defaultStyles;
     },
-    [aliases, variants]
+    [variants]
   );
 
   /**
@@ -99,10 +97,10 @@ export function useComponentBuilder<
    * */
   const applyTheme = useCallback(
     (styleMap: Map<string, string | number | any>) => {
-      const custom: BasicProps['style'] = {};
+      const custom: ComponentStyle = {};
 
       styleMap.forEach((value, key) => {
-        const token = propertyTokensMap.get(key);
+        const token = propertyStyleMap.get(key);
 
         if (token && typeof value === 'string') {
           value = fetchTokenValue(token, value);
@@ -127,7 +125,7 @@ export function useComponentBuilder<
       }
 
       for (const key in props) {
-        if (specificStyleTokensMap.has(key)) {
+        if (specificStyleMap.has(key)) {
           const value = props[key];
 
           styles.set(key, value);
@@ -142,7 +140,7 @@ export function useComponentBuilder<
   /**
    * Asignas las propiedades de estilos espécificas configuradas como variantes
    * */
-  const styles: BasicProps['style'] = useMemo(() => {
+  const styles: ComponentStyle = useMemo(() => {
     const defaultStyles = createDefaultStyles();
 
     const mixedProperties = mixProperties();
@@ -170,7 +168,7 @@ export function useComponentBuilder<
    * Propiedades limpias del componente
    * */
   const properties = useMemo(() => {
-    const customProps = Object.assign({}, props);
+    const customProps: any = Object.assign({}, props);
 
     delete customProps.style;
 
@@ -181,17 +179,19 @@ export function useComponentBuilder<
         Object.assign(customProps, { [key]: value });
       }
     }
+
     for (const key in customProps) {
       if (
         variants?.hasOwnProperty(key) ||
-        aliases?.hasOwnProperty(key) ||
-        specificStyleTokensMap.has(key)
+        aliasStyleMap.has(key) ||
+        specificStyleMap.has(key)
       ) {
         delete customProps[key];
       }
     }
+
     return customProps;
-  }, [props, defaultProps, aliases, variants]);
+  }, [props, defaultProps, variants]);
 
   return {
     styles,

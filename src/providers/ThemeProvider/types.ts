@@ -1,28 +1,39 @@
-import type { Aliases, Colors, ThemeMode, Tokens } from '../../types';
+import type {
+  Colors,
+  ComponentConfiguration,
+  ComponentConfigurations,
+  ComponentConfigurationsKey,
+  ThemeMode,
+  Tokens,
+} from '../../types';
 
-export type ThemeProviderState = Tokens & {
+export type ThemeState = Tokens & {
   theme: ThemeMode;
-  aliases: Aliases;
   colors: Colors;
+  components: ComponentConfigurations;
 };
 
-export type ThemeProviderFunctions = {
+export type ThemeTools = {
   fetchTokenValue: (
-    token: keyof ThemeProviderState,
+    token: keyof ThemeState,
     value: string | number
   ) => string | number;
+  fetchComponentConfiguration: (
+    componentName: ComponentConfigurationsKey
+  ) => ComponentConfiguration<any, any, any>;
 };
 
-export type ThemeProviderContext = ThemeProviderState & ThemeProviderFunctions;
-
-export type ThemeProviderStateKey = keyof ThemeProviderState;
+export type ThemeStateKey = keyof ThemeState;
 
 export type ThemeColors = {
   [key in ThemeMode]: Colors;
 };
 
+export type ThemeConfig = Omit<ThemeState, 'colors' | 'theme'> & {
+  colors: ThemeColors;
+};
+
 export type ThemeProviderProps = {
   theme: ThemeMode;
-  colors: ThemeColors;
-  components: any;
+  config: ThemeConfig;
 };

@@ -1,4 +1,4 @@
-import { mdiReact, mdiAngular } from '@mdi/js';
+import { mdiAngular, mdiReact, mdiVuejs } from '@mdi/js';
 import { Heading, Icon, View } from '@munyaal/mobile-ui';
 import * as React from 'react';
 
@@ -12,7 +12,7 @@ const IconExample = () => {
         alignItems={'center'}
         justifyContent={'space-around'}
       >
-        <Icon path={mdiReact} size={'xs'} fill={'$secondary500'} />
+        <Icon path={mdiVuejs} size={'xs'} fill={'$secondary500'} />
         <Icon path={mdiReact} size={'md'} fill={'$primary500'} />
         <Icon path={mdiAngular} size={'xl'} fill={'$text600'} />
       </View>

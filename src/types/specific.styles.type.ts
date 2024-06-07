@@ -1,6 +1,9 @@
 import type { TextStyle, ViewStyle } from 'react-native';
 import type { ColorKey, SpaceKey } from './../types';
 
+/**
+ * Define las propiedades de estilos que pueden pasar directos como props de un componente View
+ * */
 export type ViewSpecificStyles = {
   flex?: ViewStyle['flex'];
   flexDirection?: ViewStyle['flexDirection'];
@@ -19,6 +22,19 @@ export type ViewSpecificStyles = {
   position?: ViewStyle['position'];
 };
 
+/**
+ * Define las propiedades de estilos que pueden pasar directos como props de un componente Text
+ * */
 export type TextSpecificStyles = {
   color?: TextStyle['color'] | `$${ColorKey}`;
 };
+
+/**
+ * Define las propiedades de estilos que pueden pasar directos como props
+ * */
+export type SpecificStyles = ViewSpecificStyles & TextSpecificStyles;
+
+/**
+ * Define las claves de las propiedades de estilos
+ * */
+export type SpecificStylesKey = keyof SpecificStyles;

@@ -1,5 +1,8 @@
 import { type TextStyle, type ViewStyle } from 'react-native';
 
+/**
+ * Define los tamaños básicos a configurar
+ * */
 export type BasicSizes = {
   xs: number;
   sm: number;
@@ -8,6 +11,14 @@ export type BasicSizes = {
   xl: number;
 };
 
+/**
+ * Define las claves de todos los tamaños básicos
+ * */
+export type BasicSizesKey = keyof BasicSizes;
+
+/**
+ * Define todos tamaños a configurar
+ * */
 export type ExtendedSizes = BasicSizes & {
   '2xl': number;
   '3xl': number;
@@ -16,10 +27,21 @@ export type ExtendedSizes = BasicSizes & {
   '6xl': number;
 };
 
+/**
+ * Define las claves de todos los tamaños
+ * */
+export type ExtendedSizesKey = keyof ExtendedSizes;
+
+/**
+ * Define la estructura de la configuración de los tamaños de letra
+ * */
 export type FontSizes = {
-  [key in keyof ExtendedSizes]: TextStyle['fontSize'];
+  [key in ExtendedSizesKey]: TextStyle['fontSize'];
 };
 
+/**
+ * Define la estructura de la configuración de los pesos de letra
+ * */
 export type FontWeights = {
   light: TextStyle['fontWeight'];
   normal: TextStyle['fontWeight'];
@@ -28,22 +50,46 @@ export type FontWeights = {
   bold: TextStyle['fontWeight'];
 };
 
+/**
+ * Define la estructura de la configuración de fuentes
+ * */
+export type FontFamilies = {
+  sans: TextStyle['fontFamily'];
+  serif: TextStyle['fontFamily'];
+  mono: TextStyle['fontFamily'];
+};
+
+/**
+ * Define la estructura de la configuración de las alturas de linéa por cada tamaño
+ * */
 export type LineHeights = {
-  [key in keyof ExtendedSizes]: TextStyle['lineHeight'];
+  [key in ExtendedSizesKey]: TextStyle['lineHeight'];
 };
 
+/**
+ * Define la estructura de la configuración del espaciado de la fuente por cada tamaño
+ * */
 export type LetterSpacings = {
-  [key in keyof ExtendedSizes]: TextStyle['letterSpacing'];
+  [key in ExtendedSizesKey]: TextStyle['letterSpacing'];
 };
 
+/**
+ * Define la estructura de la configuración de los redondeos de bordes según cada tamaño básico
+ * */
 export type BorderRadius = {
-  [key in keyof BasicSizes]: ViewStyle['borderRadius'];
+  [key in BasicSizesKey]: ViewStyle['borderRadius'];
 } & {
   none: ViewStyle['borderRadius'];
 };
 
+/**
+ * Define las claves de todos los redondeos de bordes
+ * */
 export type BorderRadiusKey = keyof BorderRadius;
 
+/**
+ * Define la estructura de la configuración de los anchos de bordes
+ * */
 export type BorderWidths = {
   '0': ViewStyle['borderWidth'];
   '1': ViewStyle['borderWidth'];
@@ -52,6 +98,9 @@ export type BorderWidths = {
   '8': ViewStyle['borderWidth'];
 };
 
+/**
+ * Define la estructura de la configuración de los tamaños que son usados en los anchos y altos
+ * */
 export type Sizes = {
   '0': ViewStyle['width'];
   '0.5': ViewStyle['width'];
@@ -102,8 +151,14 @@ export type Sizes = {
   'full': ViewStyle['width'];
 };
 
+/**
+ * Define las claves de todos los tamaños
+ * */
 export type SizeKey = keyof Sizes;
 
+/**
+ * Define la estructura de la configuración de los espaciados que son usados en los margin y padding
+ * */
 export type Spaces = {
   '0': ViewStyle['margin'];
   '0.5': ViewStyle['margin'];
@@ -138,8 +193,14 @@ export type Spaces = {
   '102': ViewStyle['margin'];
 };
 
+/**
+ * Define las claves de todos los espaciados
+ * */
 export type SpaceKey = keyof Spaces;
 
+/**
+ * Define la estructura de la configuración de las opacidades
+ * */
 export type Opacity = {
   0: ViewStyle['opacity'];
   5: ViewStyle['opacity'];
@@ -158,9 +219,13 @@ export type Opacity = {
   100: ViewStyle['opacity'];
 };
 
+/**
+ * Define la estructura de todas las configuraciones
+ * */
 export type Tokens = {
   fontSizes: FontSizes;
   fontWeights: FontWeights;
+  fontFamilies: FontFamilies;
   lineHeights: LineHeights;
   letterSpacings: LetterSpacings;
   borderWidths: BorderWidths;

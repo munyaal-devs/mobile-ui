@@ -1,7 +1,7 @@
 import React, { type FC, type PropsWithChildren, useMemo } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StatusBar, type StatusBarStyle, StyleSheet, View } from 'react-native';
-import { useThemeProvider } from '../../../../src/providers/ThemeProvider';
+import { useThemeProvider } from '@munyaal/mobile-ui';
 
 const MainView: FC<PropsWithChildren> = (props) => {
   const { children } = props;

@@ -24,24 +24,22 @@ const InputExample: FC = () => {
           <FormControlHelperText>
             Introduce el correo electrónico de su cuenta
           </FormControlHelperText>
+          <FormControlErrorText>
+            Introduce el correo electrónico de su cuenta
+          </FormControlErrorText>
         </FormControl>
 
         <FormControl>
           <FormControlLabel>Contraseña</FormControlLabel>
-          <Input isInvalid>
-            <InputField />
-          </Input>
-          <FormControlErrorText>Este campo es requerido</FormControlErrorText>
-        </FormControl>
-
-        <FormControl>
-          <FormControlLabel>Nombre</FormControlLabel>
           <Input>
             <InputField />
           </Input>
           <FormControlHelperText>
-            Introduce el correo electrónico de su cuenta
+            Introduce la contraseña de su cuenta
           </FormControlHelperText>
+          <FormControlErrorText>
+            Introduce el correo electrónico de su cuenta
+          </FormControlErrorText>
         </FormControl>
       </View>
     </View>

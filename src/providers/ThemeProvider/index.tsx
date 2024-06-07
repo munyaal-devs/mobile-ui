@@ -1,8 +1,8 @@
 import {
-  type ThemeProviderContext,
   type ThemeProviderProps,
-  type ThemeProviderState,
-  type ThemeProviderStateKey,
+  type ThemeState,
+  type ThemeStateKey,
+  type ThemeTools,
 } from './types';
 import React, {
   createContext,
@@ -12,39 +12,50 @@ import React, {
   useContext,
   useMemo,
 } from 'react';
+import type {
+  ComponentConfiguration,
+  ComponentConfigurationsKey,
+} from '../../types';
 
-import { aliases, tokens } from '../../builder';
+const initialStateContextTheme: Partial<ThemeState> = {};
 
-const initialState: Partial<ThemeProviderContext> = {};
+const ContextTheme = createContext<ThemeState>(
+  initialStateContextTheme as ThemeState
+);
 
-export const Context = createContext<ThemeProviderContext>(
-  initialState as ThemeProviderContext
+const initialStateContextThemeTools: Partial<ThemeTools> = {};
+
+const ContextThemeTools = createContext<ThemeTools>(
+  initialStateContextThemeTools as ThemeTools
 );
 
 const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = (props) => {
-  const { theme, colors: themeColors, children } = props;
+  const {
+    children,
+    theme,
+    config: { colors: themeColors, ...otherProperties },
+  } = props;
 
   /**
    * Estado que contiene todas las configuraciones
    * */
-  const state: ThemeProviderState = useMemo(() => {
+  const state: ThemeState = useMemo(() => {
     const colors = themeColors[theme];
 
     return {
-      aliases,
       theme,
       colors,
-      ...tokens,
+      ...otherProperties,
     };
-  }, [theme, themeColors]);
+  }, [otherProperties, theme, themeColors]);
 
   /**
    * Busca el valor de una clave del tema
-   * @param {ThemeProviderStateKey} token
+   * @param {ThemeStateKey} token
    * @param {string | number} value
    * */
   const fetchTokenValue = useCallback(
-    (token: ThemeProviderStateKey, value: string | number) => {
+    (token: ThemeStateKey, value: string | number) => {
       if (typeof value === 'string' && value.startsWith('$')) {
         value = value.replace('$', '');
 
@@ -62,17 +73,43 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = (props) => {
     [state]
   );
 
-  const value: ThemeProviderContext = useMemo(
-    () => ({
-      ...state,
-      fetchTokenValue,
-    }),
-    [state, fetchTokenValue]
+  /**
+   * Busca la configuración de estilos del componente
+   * @param {ComponentConfigurationsKey} componentName
+   * */
+  const fetchComponentConfiguration = useCallback(
+    (
+      componentName: ComponentConfigurationsKey
+    ): ComponentConfiguration<any, any, any> => {
+      const configuration = state.components?.[componentName];
+
+      if (configuration) {
+        return { ...configuration } as ComponentConfiguration<any, any, any>;
+      }
+      return {};
+    },
+    [state]
   );
 
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  const tools: ThemeTools = useMemo(
+    () => ({
+      fetchTokenValue,
+      fetchComponentConfiguration,
+    }),
+    [fetchTokenValue, fetchComponentConfiguration]
+  );
+
+  return (
+    <ContextTheme.Provider value={state}>
+      <ContextThemeTools.Provider value={tools}>
+        {children}
+      </ContextThemeTools.Provider>
+    </ContextTheme.Provider>
+  );
 };
 
-export const useThemeProvider = () => useContext(Context);
+export const useThemeProvider = () => useContext(ContextTheme);
+
+export const useThemeToolsProvider = () => useContext(ContextThemeTools);
 
 export default ThemeProvider;
