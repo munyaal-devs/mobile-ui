@@ -22,7 +22,7 @@ export type ComponentProps = ImageProps | TextProps | ViewProps;
  * Descompone el tipo de dato de las variantes y las transforma en propiedades
  * @template V - Tipo de dato de las variantes
  */
-export type ComponentVariantProps<V extends Object> = {
+export type ComponentVariantProps<V extends Object = {}> = {
   [K in keyof V]?: keyof V[K] extends IsBoolean ? boolean : keyof V[K];
 } & Partial<AliasStyle>;
 
@@ -48,10 +48,15 @@ type IsBoolean = 'true' | 'false';
  * @template V - Tipo de dato de las variantes
  */
 export type ComponentConfiguration<
-  S extends ComponentStyle,
-  P extends ComponentProps,
+  S extends ComponentStyle = {},
+  P extends ComponentProps = {},
   V extends Object = {},
 > = Styles<S> & {
   variants?: V;
   defaultProps?: ComponentVariantProps<V> & Partial<P>;
 };
+
+/**
+ * Tipo para representar el vacío
+ * */
+export type Empty = {};

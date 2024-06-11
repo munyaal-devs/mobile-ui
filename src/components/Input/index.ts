@@ -1,7 +1,10 @@
 import { factory } from '../factory';
-import type { ViewProps } from 'react-native';
+import type { ViewProps as NativeViewProps } from 'react-native';
 import { View as NativeView } from 'react-native';
+import type { ComponentVariantProps } from '../../types';
 
 export type { InputFactoryConfiguration } from './types';
 
-export const Input = factory<ViewProps>(NativeView, 'input');
+export type InputProps = ComponentVariantProps & NativeViewProps;
+
+export const Input = factory<InputProps>(NativeView, 'input');

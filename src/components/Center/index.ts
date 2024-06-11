@@ -1,8 +1,10 @@
 import { factory } from '../factory';
-import type { ViewProps } from 'react-native';
+import type { ViewProps as NativeViewProps } from 'react-native';
 import { View as NativeView } from 'react-native';
-import type { DividerVariants } from '../Divider/types';
+import type { ComponentVariantProps } from '../../types';
 
 export type { CenterFactoryConfiguration } from './types';
 
-export const Center = factory<ViewProps, DividerVariants>(NativeView, 'center');
+export type CenterProps = ComponentVariantProps & NativeViewProps;
+
+export const Center = factory<CenterProps>(NativeView, 'center');

@@ -4,30 +4,19 @@ import React, {
   memo,
   type PropsWithChildren,
 } from 'react';
-import type {
-  ComponentConfigurationsKey,
-  ComponentProps,
-  ComponentVariantProps,
-} from '../types';
-import { useComponentBuilder } from '../hooks';
+import type { ComponentConfigurationsKey, ComponentProps } from '../types';
+import { useFactory } from '../hooks/useFactory';
 
-export function factory<
-  P extends ComponentProps,
-  V extends Object = {},
-  E extends Object = {},
->(
-  Component: ComponentType<PropsWithChildren<P>>,
-  componentName: ComponentConfigurationsKey
+export function factory<Props extends ComponentProps>(
+  Component: ComponentType<PropsWithChildren<Props>>,
+  name: ComponentConfigurationsKey
 ) {
-  type Props = PropsWithChildren<ComponentVariantProps<V> & P & E>;
-
-  const FunctionalComponent: FC<Props> = (props: Props) => {
+  const FunctionalComponent: FC<PropsWithChildren<Props>> = (
+    props: PropsWithChildren<Props>
+  ) => {
     const { children, ...allProps } = props;
 
-    const { styles, properties } = useComponentBuilder<Props>(
-      componentName,
-      allProps
-    );
+    const { properties, styles } = useFactory(allProps, name);
 
     return (
       <Component {...properties} style={styles}>

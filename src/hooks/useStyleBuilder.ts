@@ -1,24 +1,20 @@
 import type {
-  ComponentConfigurationsKey,
+  ComponentConfiguration,
   ComponentProps,
   ComponentStyle,
 } from '../types';
 import { useCallback, useMemo } from 'react';
-import { useThemeToolsProvider } from '../providers/ThemeProvider';
 import { aliasStyleMap, propertyStyleMap, specificStyleMap } from '../config';
 import { StyleSheet } from 'react-native';
+import { useThemeToolsProvider } from '../providers/ThemeProvider';
 
-export function useComponentBuilder<P extends ComponentProps>(
-  componentName: ComponentConfigurationsKey,
-  props: Omit<P, 'children'>
+export function useStyleBuilder<Props extends ComponentProps>(
+  configurations: ComponentConfiguration<any, any, any>,
+  props: Props
 ) {
-  const { fetchTokenValue, fetchComponentConfiguration } =
-    useThemeToolsProvider();
+  const { variants, defaultProps, ...generalStyles } = configurations;
 
-  const { defaultProps, variants, ...generalStyles } = useMemo(
-    () => fetchComponentConfiguration(componentName),
-    [fetchComponentConfiguration, componentName]
-  );
+  const { fetchTokenValue } = useThemeToolsProvider();
 
   /**
    * Realiza mezcla de las propiedades por defecto y las propiedades asignadas por el desarrollador,
@@ -140,7 +136,7 @@ export function useComponentBuilder<P extends ComponentProps>(
   /**
    * Asignas las propiedades de estilos espécificas configuradas como variantes
    * */
-  const styles: ComponentStyle = useMemo(() => {
+  return useMemo(() => {
     const defaultStyles = createDefaultStyles();
 
     const mixedProperties = mixProperties();
@@ -163,38 +159,4 @@ export function useComponentBuilder<P extends ComponentProps>(
     applyTheme,
     mergeStyles,
   ]);
-
-  /**
-   * Propiedades limpias del componente
-   * */
-  const properties = useMemo(() => {
-    const customProps: any = Object.assign({}, props);
-
-    delete customProps.style;
-
-    for (const key in defaultProps) {
-      const value = defaultProps[key];
-
-      if (!customProps?.hasOwnProperty(key)) {
-        Object.assign(customProps, { [key]: value });
-      }
-    }
-
-    for (const key in customProps) {
-      if (
-        variants?.hasOwnProperty(key) ||
-        aliasStyleMap.has(key) ||
-        specificStyleMap.has(key)
-      ) {
-        delete customProps[key];
-      }
-    }
-
-    return customProps;
-  }, [props, defaultProps, variants]);
-
-  return {
-    styles,
-    properties,
-  };
 }
