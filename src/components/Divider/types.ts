@@ -1,10 +1,18 @@
-import type { ComponentConfiguration, Styles } from '../../types';
-import type { ViewProps, ViewStyle } from 'react-native';
+import type {
+  ComponentConfiguration,
+  StylePipe,
+  VariantProps,
+} from '../../types';
+import type {
+  ViewProps,
+  ViewProps as NativeViewProps,
+  ViewStyle,
+} from 'react-native';
 
 export type DividerVariants = {
   orientation: {
-    vertical: Styles<ViewStyle>;
-    horizontal: Styles<ViewStyle>;
+    vertical: StylePipe<ViewStyle>;
+    horizontal: StylePipe<ViewStyle>;
   };
 };
 
@@ -13,3 +21,5 @@ export type DividerFactoryConfiguration = ComponentConfiguration<
   ViewProps,
   DividerVariants
 >;
+
+export type DividerProps = VariantProps<DividerVariants> & NativeViewProps;

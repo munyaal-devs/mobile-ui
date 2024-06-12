@@ -1,10 +1,7 @@
 import { factory } from '../factory';
-import type { ViewProps as NativeViewProps } from 'react-native';
 import { View as NativeView } from 'react-native';
-import type { ComponentVariantProps } from '../../types';
+import type { CenterProps } from './types';
 
-export type { CenterFactoryConfiguration } from './types';
-
-export type CenterProps = ComponentVariantProps & NativeViewProps;
+export type { CenterFactoryConfiguration, CenterProps } from './types';
 
 export const Center = factory<CenterProps>(NativeView, 'center');

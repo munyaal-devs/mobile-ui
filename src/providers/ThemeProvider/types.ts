@@ -20,7 +20,7 @@ export type ThemeTools = {
   ) => string | number;
   fetchComponentConfiguration: (
     componentName: ComponentConfigurationsKey
-  ) => ComponentConfiguration;
+  ) => ComponentConfiguration<any, any, any>;
 };
 
 export type ThemeStateKey = keyof ThemeState;

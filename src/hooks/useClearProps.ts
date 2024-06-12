@@ -1,13 +1,9 @@
-import {
-  aliasStyleMap,
-  type ComponentConfiguration,
-  type ComponentProps,
-  specificStyleMap,
-} from '@munyaal/mobile-ui';
 import { useMemo } from 'react';
+import type { ComponentConfiguration, ComponentProps } from './../types';
+import { aliasStyleMap, specificStyleMap } from '../config';
 
 export const useClearProps = <Props extends ComponentProps>(
-  conf: ComponentConfiguration,
+  conf: ComponentConfiguration<any, any, any>,
   props: Props
 ) => {
   const { variants, defaultProps } = conf;

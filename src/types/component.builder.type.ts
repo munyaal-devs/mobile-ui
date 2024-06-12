@@ -20,17 +20,15 @@ export type ComponentProps = ImageProps | TextProps | ViewProps;
 
 /**
  * Descompone el tipo de dato de las variantes y las transforma en propiedades
- * @template V - Tipo de dato de las variantes
  */
-export type ComponentVariantProps<V extends Object = {}> = {
+export type VariantProps<V extends Object = {}> = {
   [K in keyof V]?: keyof V[K] extends IsBoolean ? boolean : keyof V[K];
 } & Partial<AliasStyle>;
 
 /**
  * Define las propiedades de estilos de un componente de react native
- * @template {ComponentStyle} T
  */
-export type Styles<T extends ComponentStyle> = T extends infer E
+export type StylePipe<T extends ComponentStyle> = T extends infer E
   ? {
       /**
        * Define un objeto cuyas propiedades coinciden con las propiedades del tipo inferido.
@@ -42,21 +40,28 @@ export type Styles<T extends ComponentStyle> = T extends infer E
 type IsBoolean = 'true' | 'false';
 
 /**
- * Define el tipo de estilo de un componente con variaciones.
- * @template S - Tipo de dato de las propiedades de estilo
- * @template P - Tipo de dato de las propiedades del componente
- * @template V - Tipo de dato de las variantes
+ * Define las propiedades de estilos de un componente de react native
  */
-export type ComponentConfiguration<
-  S extends ComponentStyle = {},
-  P extends ComponentProps = {},
-  V extends Object = {},
-> = Styles<S> & {
-  variants?: V;
-  defaultProps?: ComponentVariantProps<V> & Partial<P>;
+export type StatePipe<
+  StateArgs extends string,
+  StyleArgs extends ComponentStyle,
+> = {
+  /**
+   * Define un objeto cuyas propiedades coinciden con las propiedades del tipo inferido.
+   */
+  [Key in StateArgs as `:${Key}`]?: StyleArgs;
 };
 
 /**
- * Tipo para representar el vacío
- * */
-export type Empty = {};
+ * Define el tipo de estilo de un componente con variaciones.
+ */
+export type ComponentConfiguration<
+  StyleArgs extends ComponentStyle = never,
+  Props extends ComponentProps = never,
+  Variants extends Object = never,
+  StateArgs extends string = never,
+> = StylePipe<StyleArgs> &
+  StatePipe<StateArgs, StyleArgs> & {
+    variants?: Variants & StatePipe<StateArgs, StyleArgs>;
+    defaultProps?: VariantProps<Variants> & Partial<Props>;
+  };

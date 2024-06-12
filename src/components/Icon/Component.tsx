@@ -2,9 +2,9 @@ import React, { type FC, memo, useMemo } from 'react';
 import { Path, Svg } from 'react-native-svg';
 import { View } from 'react-native';
 import { useThemeToolsProvider } from '../../providers/ThemeProvider';
-import type { IconProps } from './types';
+import type { NativeIconProps } from './types';
 
-const Component: FC<IconProps> = (props) => {
+const Component: FC<NativeIconProps> = (props) => {
   const { path, fill = '$text900', ...viewProps } = props;
 
   const { fetchTokenValue } = useThemeToolsProvider();

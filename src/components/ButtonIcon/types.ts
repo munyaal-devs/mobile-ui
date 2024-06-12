@@ -1,12 +1,16 @@
 import type { ViewStyle } from 'react-native';
-import type { ComponentConfiguration, Styles } from '../../types';
-import type { IconProps } from '../Icon/types';
+import type {
+  ComponentConfiguration,
+  VariantProps,
+  StylePipe,
+} from '../../types';
+import type { IconProps as NativeIconProps, IconProps } from '../Icon/types';
 
 export type ButtonIconVariants = {
   size: {
-    sm: Styles<ViewStyle>;
-    md: Styles<ViewStyle>;
-    lg: Styles<ViewStyle>;
+    sm: StylePipe<ViewStyle>;
+    md: StylePipe<ViewStyle>;
+    lg: StylePipe<ViewStyle>;
   };
 };
 
@@ -15,3 +19,6 @@ export type ButtonIconFactoryConfiguration = ComponentConfiguration<
   IconProps,
   ButtonIconVariants
 >;
+
+export type ButtonIconProps = VariantProps<ButtonIconVariants> &
+  NativeIconProps;

@@ -1,17 +1,23 @@
 import type {
   BasicSizes,
   ComponentConfiguration,
+  VariantProps,
   FontWeights,
-  Styles,
+  StylePipe,
+  TextSpecificStyles,
 } from '../../types';
-import type { TextProps, TextStyle } from 'react-native';
+import type {
+  TextProps,
+  TextProps as NativeTextProps,
+  TextStyle,
+} from 'react-native';
 
 export type HeadingVariants = {
   size: {
-    [key in keyof BasicSizes]: Styles<TextStyle>;
+    [key in keyof BasicSizes]: StylePipe<TextStyle>;
   };
   weight: {
-    [key in keyof FontWeights]: Styles<TextStyle>;
+    [key in keyof FontWeights]: StylePipe<TextStyle>;
   };
 };
 
@@ -20,3 +26,7 @@ export type HeadingFactoryConfiguration = ComponentConfiguration<
   TextProps,
   HeadingVariants
 >;
+
+export type HeadingProps = VariantProps<HeadingVariants> &
+  NativeTextProps &
+  TextSpecificStyles;

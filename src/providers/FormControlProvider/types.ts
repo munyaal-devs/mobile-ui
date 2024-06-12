@@ -8,6 +8,8 @@ export type FormControlState = {
   isFocused?: boolean;
 };
 
+export type FormControlStateKeys = keyof FormControlState;
+
 export type FormControlFunctions = {
   setIsFocused?: Dispatch<SetStateAction<boolean>>;
 };

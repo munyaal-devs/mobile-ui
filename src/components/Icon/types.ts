@@ -2,18 +2,19 @@ import type { TextStyle, ViewProps, ViewStyle } from 'react-native';
 import type {
   ColorKey,
   ComponentConfiguration,
+  VariantProps,
   ExtendedSizes,
-  Styles,
+  StylePipe,
 } from '../../types';
 
-export type IconProps = {
+export type NativeIconProps = {
   path: string;
   fill?: TextStyle['color'] | `$${ColorKey}`;
 } & ViewProps;
 
 export type IconVariants = {
   size: {
-    [key in keyof ExtendedSizes]: Styles<ViewStyle>;
+    [key in keyof ExtendedSizes]: StylePipe<ViewStyle>;
   };
 };
 
@@ -22,3 +23,5 @@ export type IconFactoryConfiguration = ComponentConfiguration<
   IconProps,
   IconVariants
 >;
+
+export type IconProps = VariantProps<IconVariants> & NativeIconProps;

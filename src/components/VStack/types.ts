@@ -1,17 +1,27 @@
-import type { BasicSizes, ComponentConfiguration, Styles } from '../../types';
-import type { ViewProps, ViewStyle } from 'react-native';
+import type {
+  BasicSizes,
+  ComponentConfiguration,
+  VariantProps,
+  StylePipe,
+  ViewSpecificStyles,
+} from '../../types';
+import type { ViewProps as NativeViewProps, ViewStyle } from 'react-native';
 
 export type VStackVariants = {
   space: {
-    [key in keyof BasicSizes]: Styles<ViewStyle>;
+    [key in keyof BasicSizes]: StylePipe<ViewStyle>;
   };
   reversed: {
-    true: Styles<ViewStyle>;
+    true: StylePipe<ViewStyle>;
   };
 };
 
 export type VStackFactoryConfiguration = ComponentConfiguration<
   ViewStyle,
-  ViewProps,
+  NativeViewProps,
   VStackVariants
 >;
+
+export type VStackProps = VariantProps<VStackVariants> &
+  NativeViewProps &
+  ViewSpecificStyles;

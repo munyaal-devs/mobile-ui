@@ -1,11 +1,11 @@
 import { factory } from '../factory';
-import type { TextProps as NativeTextProps } from 'react-native';
 import { Text as NativeText } from 'react-native';
-import type { ComponentVariantProps } from '../../types';
+import type { FormControlErrorTextProps } from './types';
 
-export type { FormControlErrorTextFactoryConfiguration } from './types';
-
-export type FormControlErrorTextProps = ComponentVariantProps & NativeTextProps;
+export type {
+  FormControlErrorTextFactoryConfiguration,
+  FormControlErrorTextProps,
+} from './types';
 
 export const FormControlErrorText = factory<FormControlErrorTextProps>(
   NativeText,

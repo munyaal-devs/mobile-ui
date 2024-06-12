@@ -4,44 +4,44 @@ export const icon: IconFactoryConfiguration = {
   variants: {
     size: {
       'xs': {
-        width: '$3.5',
-        height: '$3.5',
-      },
-      'sm': {
         width: '$4',
         height: '$4',
       },
-      'md': {
-        width: '$4.5',
-        height: '$4.5',
-      },
-      'lg': {
+      'sm': {
         width: '$5',
         height: '$5',
       },
-      'xl': {
-        width: '$5.5',
-        height: '$5.5',
-      },
-      '2xl': {
+      'md': {
         width: '$6',
         height: '$6',
       },
-      '3xl': {
-        width: '$6.5',
-        height: '$6.5',
-      },
-      '4xl': {
+      'lg': {
         width: '$7',
         height: '$7',
       },
-      '5xl': {
-        width: '$7.5',
-        height: '$7.5',
-      },
-      '6xl': {
+      'xl': {
         width: '$8',
         height: '$8',
+      },
+      '2xl': {
+        width: '$9',
+        height: '$9',
+      },
+      '3xl': {
+        width: '$10',
+        height: '$10',
+      },
+      '4xl': {
+        width: '$11',
+        height: '$11',
+      },
+      '5xl': {
+        width: '$12',
+        height: '$12',
+      },
+      '6xl': {
+        width: '$13',
+        height: '$13',
       },
     },
   },

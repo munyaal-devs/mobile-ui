@@ -1,22 +1,28 @@
 import type {
   BasicSizes,
   ComponentConfiguration,
+  VariantProps,
   FontWeights,
-  Styles,
+  StylePipe,
+  TextSpecificStyles,
 } from '../../types';
-import type { TextProps, TextStyle } from 'react-native';
+import type { TextProps as NativeTextProps, TextStyle } from 'react-native';
 
 export type TextVariants = {
   size: {
-    [key in keyof BasicSizes]: Styles<TextStyle>;
+    [key in keyof BasicSizes]: StylePipe<TextStyle>;
   };
   weight: {
-    [key in keyof FontWeights]: Styles<TextStyle>;
+    [key in keyof FontWeights]: StylePipe<TextStyle>;
   };
 };
 
 export type TextFactoryConfiguration = ComponentConfiguration<
   TextStyle,
-  TextProps,
+  NativeTextProps,
   TextVariants
 >;
+
+export type TextProps = VariantProps<TextVariants> &
+  NativeTextProps &
+  TextSpecificStyles;

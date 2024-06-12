@@ -1,7 +1,15 @@
-import type { TextInputProps, TextStyle } from 'react-native';
-import type { ComponentConfiguration } from '../../types';
+import type {
+  TextInputProps as NativeTextInputProps,
+  TextStyle as NativeTextStyle,
+} from 'react-native';
+import type { ComponentConfiguration, VariantProps } from '../../types';
+import type { FormControlStateKeys } from '../../providers/FormControlProvider/types';
 
 export type InputFieldFactoryConfiguration = ComponentConfiguration<
-  TextStyle,
-  TextInputProps
+  NativeTextStyle,
+  NativeTextInputProps,
+  never,
+  FormControlStateKeys
 >;
+
+export type InputFieldProps = VariantProps & NativeTextInputProps;

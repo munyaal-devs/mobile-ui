@@ -22,12 +22,12 @@ export const button: ButtonFactoryConfiguration = {
       },
     },
     action: {
-      primary: {
+      solid: {
         backgroundColor: '$primary500',
         borderColor: '$primary500',
         borderWidth: '$1',
       },
-      secondary: {
+      outline: {
         borderColor: '$primary500',
         borderWidth: '$1',
       },
@@ -35,7 +35,7 @@ export const button: ButtonFactoryConfiguration = {
   },
   defaultProps: {
     size: 'md',
-    action: 'primary',
+    action: 'solid',
     activeOpacity: 0.7,
   },
 };

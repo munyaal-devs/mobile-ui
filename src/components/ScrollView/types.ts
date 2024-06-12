@@ -1,7 +1,12 @@
-import type { ScrollViewProps, ViewStyle } from 'react-native';
-import type { ComponentConfiguration } from '../../types';
+import type {
+  ScrollViewProps as NativeScrollViewProps,
+  ViewStyle,
+} from 'react-native';
+import type { ComponentConfiguration, VariantProps } from '../../types';
 
 export type ScrollViewFactoryConfiguration = ComponentConfiguration<
   ViewStyle,
-  ScrollViewProps
+  NativeScrollViewProps
 >;
+
+export type ScrollViewProps = VariantProps & NativeScrollViewProps;

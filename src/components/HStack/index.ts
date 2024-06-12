@@ -1,13 +1,7 @@
 import { factory } from '../factory';
-import type { ViewProps as NativeViewProps } from 'react-native';
 import { View as NativeView } from 'react-native';
-import type { HStackVariants } from './types';
-import type { ComponentVariantProps, ViewSpecificStyles } from '../../types';
+import type { HStackProps } from './types';
 
-export type { HStackFactoryConfiguration } from './types';
-
-export type HStackProps = ComponentVariantProps<HStackVariants> &
-  NativeViewProps &
-  ViewSpecificStyles;
+export type { HStackFactoryConfiguration, HStackProps } from './types';
 
 export const HStack = factory<HStackProps>(NativeView, 'hStack');

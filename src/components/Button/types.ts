@@ -1,20 +1,29 @@
-import type { ComponentConfiguration, Styles } from '../../types';
-import type { TouchableOpacityProps, ViewStyle } from 'react-native';
+import type {
+  ComponentConfiguration,
+  StylePipe,
+  VariantProps,
+} from '../../types';
+import type {
+  TouchableOpacityProps,
+  ViewStyle as NativeViewStyle,
+} from 'react-native';
 
 export type ButtonVariants = {
   size: {
-    sm: Styles<ViewStyle>;
-    md: Styles<ViewStyle>;
-    lg: Styles<ViewStyle>;
+    sm: StylePipe<NativeViewStyle>;
+    md: StylePipe<NativeViewStyle>;
+    lg: StylePipe<NativeViewStyle>;
   };
   action: {
-    primary: Styles<ViewStyle>;
-    secondary: Styles<ViewStyle>;
+    solid: StylePipe<NativeViewStyle>;
+    outline: StylePipe<NativeViewStyle>;
   };
 };
 
 export type ButtonFactoryConfiguration = ComponentConfiguration<
-  ViewStyle,
+  NativeViewStyle,
   TouchableOpacityProps,
   ButtonVariants
 >;
+
+export type ButtonProps = VariantProps<ButtonVariants> & TouchableOpacityProps;
