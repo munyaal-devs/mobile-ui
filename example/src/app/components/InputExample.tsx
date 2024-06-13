@@ -7,41 +7,44 @@ import {
   Heading,
   Input,
   InputField,
+  KeyboardAvoidingView,
   View,
 } from '@munyaal/mobile-ui';
 
 const InputExample: FC = () => {
   return (
     <View flexDirection={'column'} gap={'$4'}>
-      <Heading>Input Component</Heading>
+      <KeyboardAvoidingView>
+        <Heading>Input Component</Heading>
 
-      <View flexDirection={'column'} gap={'$4'}>
-        <FormControl>
-          <FormControlLabel>Correo electrónico</FormControlLabel>
-          <Input>
-            <InputField />
-          </Input>
-          <FormControlHelperText>
-            Introduce el correo electrónico de su cuenta
-          </FormControlHelperText>
-          <FormControlErrorText>
-            Introduce el correo electrónico de su cuenta
-          </FormControlErrorText>
-        </FormControl>
+        <View flexDirection={'column'} gap={'$4'}>
+          <FormControl>
+            <FormControlLabel>Correo electrónico</FormControlLabel>
+            <Input>
+              <InputField />
+            </Input>
+            <FormControlHelperText>
+              Introduce el correo electrónico de su cuenta
+            </FormControlHelperText>
+            <FormControlErrorText>
+              Introduce el correo electrónico de su cuenta
+            </FormControlErrorText>
+          </FormControl>
 
-        <FormControl>
-          <FormControlLabel>Contraseña</FormControlLabel>
-          <Input>
-            <InputField />
-          </Input>
-          <FormControlHelperText>
-            Introduce la contraseña de su cuenta
-          </FormControlHelperText>
-          <FormControlErrorText>
-            Introduce el correo electrónico de su cuenta
-          </FormControlErrorText>
-        </FormControl>
-      </View>
+          <FormControl>
+            <FormControlLabel>Contraseña</FormControlLabel>
+            <Input>
+              <InputField />
+            </Input>
+            <FormControlHelperText>
+              Introduce la contraseña de su cuenta
+            </FormControlHelperText>
+            <FormControlErrorText>
+              Introduce el correo electrónico de su cuenta
+            </FormControlErrorText>
+          </FormControl>
+        </View>
+      </KeyboardAvoidingView>
     </View>
   );
 };

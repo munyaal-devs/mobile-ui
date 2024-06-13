@@ -17,12 +17,17 @@ import { scrollView } from './scroll.view';
 import { text } from './text';
 import { view } from './view';
 import { vStack } from './vstack';
+import { keyboardAvoidingView } from './keyboard.avoiding.view';
+import { image } from './image';
+import { flatList } from './flat.list';
+import { sectionList } from './section.list';
 
 export const components: ComponentConfigurations = {
   button,
   buttonIcon,
   buttonText,
   center,
+  flatList,
   divider,
   formControl,
   formControlErrorText,
@@ -31,9 +36,12 @@ export const components: ComponentConfigurations = {
   heading,
   hStack,
   icon,
+  image,
   input,
   inputField,
+  keyboardAvoidingView,
   scrollView,
+  sectionList,
   text,
   view,
   vStack,

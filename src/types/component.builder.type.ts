@@ -49,16 +49,16 @@ export type StatePipe<
   /**
    * Define un objeto cuyas propiedades coinciden con las propiedades del tipo inferido.
    */
-  [Key in StateArgs as `:${Key}`]?: StyleArgs;
+  [Key in StateArgs as `:${Key}`]?: StylePipe<StyleArgs>;
 };
 
 /**
  * Define el tipo de estilo de un componente con variaciones.
  */
 export type ComponentConfiguration<
-  StyleArgs extends ComponentStyle = never,
-  Props extends ComponentProps = never,
-  Variants extends Object = never,
+  StyleArgs extends ComponentStyle = {},
+  Props extends ComponentProps = {},
+  Variants extends Object = {},
   StateArgs extends string = never,
 > = StylePipe<StyleArgs> &
   StatePipe<StateArgs, StyleArgs> & {

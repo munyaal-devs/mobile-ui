@@ -8,6 +8,7 @@ import ButtonExample from './components/ButtonExample';
 import MainView from './components/MainView';
 import MainProvider from './components/MainProvider';
 import InputExample from './components/InputExample';
+import ImageExample from './components/ImageExample';
 
 export default function App() {
   return (
@@ -31,12 +32,13 @@ export default function App() {
               <Divider />
               <CenterExample />
               <Divider />
+              <ImageExample />
+              <Divider />
               <IconExample />
               <Divider />
               <InputExample />
               <Divider />
               <ButtonExample />
-              <Divider />
             </View>
           </ScrollView>
         </View>

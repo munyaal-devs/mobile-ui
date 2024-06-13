@@ -4,6 +4,7 @@ import type {
   ButtonTextFactoryConfiguration,
   CenterFactoryConfiguration,
   DividerFactoryConfiguration,
+  FlatListFactoryConfiguration,
   FormControlErrorTextFactoryConfiguration,
   FormControlFactoryConfiguration,
   FormControlHelperTextFactoryConfiguration,
@@ -11,9 +12,12 @@ import type {
   HeadingFactoryConfiguration,
   HStackFactoryConfiguration,
   IconFactoryConfiguration,
+  ImageFactoryConfiguration,
   InputFactoryConfiguration,
   InputFieldFactoryConfiguration,
+  KeyboardAvoidingViewFactoryConfiguration,
   ScrollViewFactoryConfiguration,
+  SectionListFactoryConfiguration,
   TextFactoryConfiguration,
   ViewFactoryConfiguration,
   VStackFactoryConfiguration,
@@ -25,6 +29,7 @@ export type ComponentConfigurations = {
   buttonText?: ButtonTextFactoryConfiguration;
   center?: CenterFactoryConfiguration;
   divider?: DividerFactoryConfiguration;
+  flatList?: FlatListFactoryConfiguration;
   formControl?: FormControlFactoryConfiguration;
   formControlErrorText?: FormControlErrorTextFactoryConfiguration;
   formControlHelperText?: FormControlHelperTextFactoryConfiguration;
@@ -32,9 +37,12 @@ export type ComponentConfigurations = {
   heading?: HeadingFactoryConfiguration;
   hStack?: HStackFactoryConfiguration;
   icon?: IconFactoryConfiguration;
+  image?: ImageFactoryConfiguration;
   input?: InputFactoryConfiguration;
   inputField?: InputFieldFactoryConfiguration;
+  keyboardAvoidingView?: KeyboardAvoidingViewFactoryConfiguration;
   scrollView?: ScrollViewFactoryConfiguration;
+  sectionList?: SectionListFactoryConfiguration;
   text?: TextFactoryConfiguration;
   view?: ViewFactoryConfiguration;
   vStack?: VStackFactoryConfiguration;
