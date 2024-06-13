@@ -20,7 +20,7 @@ const ButtonExample: FC = () => {
           <ButtonIcon size={'sm'} path={mdiContentSave} />
         </Button>
 
-        <Button action={'outline'}>
+        <Button variant={'outline'}>
           <ButtonIcon fill={'$primary500'} path={mdiContentSave} />
           <ButtonText color={'$primary500'}>Hola mundo</ButtonText>
           <ButtonIcon fill={'$primary500'} path={mdiContentSave} />

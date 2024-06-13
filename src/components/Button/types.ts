@@ -14,7 +14,7 @@ export type ButtonVariants = {
     md: StylePipe<NativeViewStyle>;
     lg: StylePipe<NativeViewStyle>;
   };
-  action: {
+  variant: {
     solid: StylePipe<NativeViewStyle>;
     outline: StylePipe<NativeViewStyle>;
   };

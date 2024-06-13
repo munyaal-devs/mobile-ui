@@ -21,7 +21,7 @@ export const button: ButtonFactoryConfiguration = {
         paddingHorizontal: '$3.5',
       },
     },
-    action: {
+    variant: {
       solid: {
         backgroundColor: '$primary500',
         borderColor: '$primary500',
@@ -35,7 +35,7 @@ export const button: ButtonFactoryConfiguration = {
   },
   defaultProps: {
     size: 'md',
-    action: 'solid',
+    variant: 'solid',
     activeOpacity: 0.7,
   },
 };
