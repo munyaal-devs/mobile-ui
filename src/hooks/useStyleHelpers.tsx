@@ -1,7 +1,11 @@
 import { useCallback } from 'react';
-import { aliasStyleMap, specificStyleMap } from './../config';
+import { aliasStyleMap, propertyStyleMap, specificStyleMap } from './../config';
+import type { ComponentStyle } from '@munyaal/mobile-ui';
+import { useThemeToolsProvider } from '../providers/ThemeProvider';
 
 export const useStyleHelpers = () => {
+  const { fetchTokenValue } = useThemeToolsProvider();
+
   /**
    * Extrae solo los estilos aplicables
    * @param {Object} styles - Configuraciones de estilos
@@ -122,11 +126,36 @@ export const useStyleHelpers = () => {
     return styleMap;
   }, []);
 
+  /**
+   * Aplica los valores del tema en los estilos
+   * @param {Map<string, any>} styleMap - Propiedades del estilo
+   * @return {ComponentStyle}
+   * */
+  const applyTheme = useCallback(
+    (styleMap: Map<string, any>) => {
+      const custom: ComponentStyle = {};
+
+      styleMap.forEach((value, key) => {
+        const token = propertyStyleMap.get(key);
+
+        if (token && typeof value === 'string') {
+          value = fetchTokenValue(token, value);
+        }
+
+        Object.assign(custom, { [key]: value });
+      });
+
+      return custom;
+    },
+    [fetchTokenValue]
+  );
+
   return {
     extractStyles,
     mergeProperties,
     extractVariantStyles,
     extractCustomStyles,
     mergeStyles,
+    applyTheme,
   };
 };

@@ -3,7 +3,7 @@ import type {
   ViewProps as NativeViewProps,
   ViewStyle as NativeViewStyle,
 } from 'react-native';
-import type { FormControlStateKeys } from '../../providers/FormControlProvider/types';
+import type { FormControlStateKeys } from '../FormControl/types';
 
 export type InputFactoryConfiguration = ComponentConfiguration<
   NativeViewStyle,

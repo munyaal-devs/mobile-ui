@@ -1,13 +1,7 @@
-import type {
-  ComponentConfiguration,
-  ComponentProps,
-  ComponentStyle,
-} from '../types';
-import { useCallback, useMemo } from 'react';
-import { propertyStyleMap } from '../config';
+import type { ComponentConfiguration, ComponentProps } from '../types';
+import { useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { useStyleHelpers } from './useStyleHelpers';
-import { useThemeToolsProvider } from '../providers/ThemeProvider';
 
 export function useStyleBuilder<Props extends ComponentProps>(
   configurations: ComponentConfiguration<any, any, any>,
@@ -19,9 +13,8 @@ export function useStyleBuilder<Props extends ComponentProps>(
     extractVariantStyles,
     extractCustomStyles,
     mergeStyles,
+    applyTheme,
   } = useStyleHelpers();
-
-  const { fetchTokenValue } = useThemeToolsProvider();
 
   const variants = useMemo(
     () => Object.assign({}, { ...configurations.variants }),
@@ -42,31 +35,6 @@ export function useStyleBuilder<Props extends ComponentProps>(
     return styles;
   }, [configurations]);
 
-  /**
-   * En caso de asignar estilos del tema, esta funciona los busca y los asigna a la hoja de estilos
-   * */
-  const applyTheme = useCallback(
-    (styleMap: Map<string, string | number | any>) => {
-      const custom: ComponentStyle = {};
-
-      styleMap.forEach((value, key) => {
-        const token = propertyStyleMap.get(key);
-
-        if (token && typeof value === 'string') {
-          value = fetchTokenValue(token, value);
-        }
-
-        Object.assign(custom, { [key]: value });
-      });
-
-      return custom;
-    },
-    [fetchTokenValue]
-  );
-
-  /**
-   * Asignas las propiedades de estilos espécificas configuradas como variantes
-   * */
   return useMemo(() => {
     const properties = mergeProperties(props, defaultProps);
 

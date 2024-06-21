@@ -3,7 +3,16 @@ import type {
   ViewProps as NativeViewProps,
   ViewStyle as NativeViewStyle,
 } from 'react-native';
-import type { FormControlStateKeys } from '../../providers/FormControlProvider/types';
+
+export type FormControlState = {
+  isDisabled?: boolean;
+  isInvalid?: boolean;
+  isReadOnly?: boolean;
+  isRequired?: boolean;
+  isFocused?: boolean;
+};
+
+export type FormControlStateKeys = keyof FormControlState;
 
 export type FormControlFactoryConfiguration = ComponentConfiguration<
   NativeViewStyle,
