@@ -3,16 +3,28 @@ import type {
   ViewProps as NativeViewProps,
   ViewStyle as NativeViewStyle,
 } from 'react-native';
+import type { Dispatch, SetStateAction } from 'react';
 
 export type FormControlState = {
   isDisabled?: boolean;
   isInvalid?: boolean;
-  isReadOnly?: boolean;
   isRequired?: boolean;
-  isFocused?: boolean;
+  isReadOnly?: boolean;
 };
 
-export type FormControlStateKeys = keyof FormControlState;
+export type FormControlStateProvider = {
+  isInvalid: boolean;
+  isDisabled: boolean;
+  isRequired: boolean;
+  isReadOnly: boolean;
+  isFocused: boolean;
+  setIsFocused: Dispatch<SetStateAction<boolean>>;
+};
+
+export type FormControlStateKeys = keyof Omit<
+  FormControlStateProvider,
+  'setIsFocused'
+>;
 
 export type FormControlFactoryConfiguration = ComponentConfiguration<
   NativeViewStyle,
@@ -21,4 +33,6 @@ export type FormControlFactoryConfiguration = ComponentConfiguration<
   FormControlStateKeys
 >;
 
-export type FormControlProps = VariantProps & NativeViewProps;
+export type NativeFormControlProps = NativeViewProps & FormControlState;
+
+export type FormControlProps = VariantProps & NativeFormControlProps;

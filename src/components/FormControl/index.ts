@@ -1,10 +1,13 @@
 import { factory } from '../factory';
-import { View as NativeView } from 'react-native';
 import type { FormControlProps } from './types';
+import NativeFormControl from './Component';
 
 export type {
   FormControlFactoryConfiguration,
   FormControlProps,
 } from './types';
 
-export const FormControl = factory<FormControlProps>(NativeView, 'formControl');
+export const FormControl = factory<FormControlProps>(
+  NativeFormControl,
+  'formControl'
+);

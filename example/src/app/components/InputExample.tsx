@@ -1,5 +1,7 @@
-import React, { type FC } from 'react';
+import React, { type FC, useCallback, useState } from 'react';
 import {
+  Button,
+  ButtonText,
   FormControl,
   FormControlErrorText,
   FormControlHelperText,
@@ -12,37 +14,62 @@ import {
 } from '@munyaal/mobile-ui';
 
 const InputExample: FC = () => {
+  const [isReadOnly, setIsReadOnly] = useState<boolean>(false);
+  const [isInvalid, setIsInvalid] = useState<boolean>(false);
+
+  const handleToggleReadOnly = useCallback(() => {
+    setIsReadOnly((prevState) => !prevState);
+  }, [setIsReadOnly]);
+
+  const handleToggleInvalid = useCallback(() => {
+    setIsInvalid((prevState) => !prevState);
+  }, [setIsInvalid]);
+
   return (
     <View flexDirection={'column'} gap={'$4'}>
       <KeyboardAvoidingView>
         <Heading>Input Component</Heading>
 
         <View flexDirection={'column'} gap={'$4'}>
-          <FormControl>
+          <FormControl isInvalid={isInvalid}>
             <FormControlLabel>Correo electrónico</FormControlLabel>
             <Input>
               <InputField />
             </Input>
-            <FormControlHelperText>
-              Introduce el correo electrónico de su cuenta
-            </FormControlHelperText>
-            <FormControlErrorText>
-              Introduce el correo electrónico de su cuenta
-            </FormControlErrorText>
+            {!isInvalid ? (
+              <FormControlHelperText>
+                Introduce la contraseña de su cuenta
+              </FormControlHelperText>
+            ) : (
+              <FormControlErrorText>
+                Introduce el correo electrónico de su cuenta
+              </FormControlErrorText>
+            )}
           </FormControl>
 
-          <FormControl>
+          <FormControl isInvalid={isInvalid} isReadOnly={isReadOnly}>
             <FormControlLabel>Contraseña</FormControlLabel>
             <Input>
               <InputField />
             </Input>
-            <FormControlHelperText>
-              Introduce la contraseña de su cuenta
-            </FormControlHelperText>
-            <FormControlErrorText>
-              Introduce el correo electrónico de su cuenta
-            </FormControlErrorText>
+            {!isInvalid ? (
+              <FormControlHelperText>
+                Introduce la contraseña de su cuenta
+              </FormControlHelperText>
+            ) : (
+              <FormControlErrorText>
+                Introduce el correo electrónico de su cuenta
+              </FormControlErrorText>
+            )}
           </FormControl>
+
+          <Button onPress={handleToggleReadOnly}>
+            <ButtonText>ReadOnly {isReadOnly ? 'true' : 'false'}</ButtonText>
+          </Button>
+
+          <Button onPress={handleToggleInvalid}>
+            <ButtonText>Invalid {isInvalid ? 'true' : 'false'}</ButtonText>
+          </Button>
         </View>
       </KeyboardAvoidingView>
     </View>

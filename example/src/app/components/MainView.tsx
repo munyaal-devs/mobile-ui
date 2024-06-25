@@ -1,10 +1,10 @@
 import React, { type FC, type PropsWithChildren, useMemo } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StatusBar, type StatusBarStyle, StyleSheet, View } from 'react-native';
-import { useThemeProvider } from '@munyaal/mobile-ui';
+import { StatusBar, type StatusBarStyle, StyleSheet } from 'react-native';
+import { useThemeProvider, View, type ViewProps } from '@munyaal/mobile-ui';
 
-const MainView: FC<PropsWithChildren> = (props) => {
-  const { children } = props;
+const MainView: FC<PropsWithChildren<ViewProps>> = (props) => {
+  const { children, ...viewProps } = props;
 
   const {
     colors: { background50 },
@@ -19,7 +19,7 @@ const MainView: FC<PropsWithChildren> = (props) => {
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: background50 }]}>
       <StatusBar backgroundColor={background50} barStyle={barStyle} />
-      <View style={styles.container}>{children}</View>
+      <View {...viewProps}>{children}</View>
     </SafeAreaView>
   );
 };

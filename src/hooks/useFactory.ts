@@ -15,10 +15,8 @@ export const useFactory = <Props extends ComponentProps>(
     [fetchComponentConfiguration, name]
   );
 
-  // Elimina las propiedades de estilos para dejar los del componente
   const properties = useClearProps(conf, props);
 
-  // Crea los estilos del componente
   const styles = useStyleBuilder(conf, props);
 
   return {

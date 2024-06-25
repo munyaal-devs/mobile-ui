@@ -13,35 +13,33 @@ import ImageExample from './components/ImageExample';
 export default function App() {
   return (
     <MainProvider>
-      <MainView>
-        <View flex={1} px={'$6'} pt={'$2'}>
-          <ScrollView showsVerticalScrollIndicator={false}>
-            <View flexDirection={'column'} gap={'$4'} mb={'$8'}>
-              <Heading>I am a Heading</Heading>
-              <Divider />
-              <Text color={'$text800'}>
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
-                consequatur debitis doloribus error facere, ipsa molestiae odit
-                quisquam, quos sed tempora totam. Cum dolorum error, et hic
-                omnis rem sit.
-              </Text>
-              <Divider />
-              <HStackExample />
-              <Divider />
-              <VStackExample />
-              <Divider />
-              <CenterExample />
-              <Divider />
-              <ImageExample />
-              <Divider />
-              <IconExample />
-              <Divider />
-              <InputExample />
-              <Divider />
-              <ButtonExample />
-            </View>
-          </ScrollView>
-        </View>
+      <MainView flex={1} px={'$6'} pt={'$2'}>
+        <ScrollView showsVerticalScrollIndicator={false}>
+          <View flexDirection={'column'} gap={'$4'} mb={'$8'}>
+            <Heading>I am a Heading</Heading>
+            <Divider />
+            <Text color={'$text800'}>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab
+              consequatur debitis doloribus error facere, ipsa molestiae odit
+              quisquam, quos sed tempora totam. Cum dolorum error, et hic omnis
+              rem sit.
+            </Text>
+            <Divider />
+            <HStackExample />
+            <Divider />
+            <VStackExample />
+            <Divider />
+            <CenterExample />
+            <Divider />
+            <ImageExample />
+            <Divider />
+            <IconExample />
+            <Divider />
+            <InputExample />
+            <Divider />
+            <ButtonExample />
+          </View>
+        </ScrollView>
       </MainView>
     </MainProvider>
   );

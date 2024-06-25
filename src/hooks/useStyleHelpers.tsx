@@ -2,8 +2,10 @@ import { useCallback } from 'react';
 import { aliasStyleMap, propertyStyleMap, specificStyleMap } from './../config';
 import type { ComponentStyle } from '@munyaal/mobile-ui';
 import { useThemeToolsProvider } from '../providers/ThemeProvider';
+import { useComponentContextProvider } from '../providers/ComponentContextProvider';
 
 export const useStyleHelpers = () => {
+  const { states } = useComponentContextProvider();
   const { fetchTokenValue } = useThemeToolsProvider();
 
   /**
@@ -11,19 +13,29 @@ export const useStyleHelpers = () => {
    * @param {Object} styles - Configuraciones de estilos
    * @return {Map<string, any>}
    * */
-  const extractStyles = useCallback((styles: Object) => {
-    const styleMap = new Map<string, any>();
+  const extractStyles = useCallback(
+    (styles: Object) => {
+      const styleMap = new Map<string, any>();
 
-    for (const key in styles) {
-      if (!key.startsWith(':')) {
+      for (const key in styles) {
         const value = styles[key];
 
-        styleMap.set(key, value);
-      }
-    }
+        if (!key.startsWith(':')) {
+          styleMap.set(key, value);
+        } else {
+          const stateKey = `${key}`.replace(':', '');
 
-    return styleMap;
-  }, []);
+          if (states?.[stateKey]) {
+            for (const styleKey in value) {
+              styleMap.set(styleKey, value[styleKey]);
+            }
+          }
+        }
+      }
+      return styleMap;
+    },
+    [states]
+  );
 
   /**
    * Fusiona los props del componente y los props predeterminado en la configuración del componente
