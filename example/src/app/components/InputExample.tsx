@@ -31,7 +31,7 @@ const InputExample: FC = () => {
         <Heading>Input Component</Heading>
 
         <View flexDirection={'column'} gap={'$4'}>
-          <FormControl isInvalid={isInvalid}>
+          <FormControl isInvalid={isInvalid} isReadOnly={isReadOnly}>
             <FormControlLabel>Correo electrónico</FormControlLabel>
             <Input>
               <InputField />

@@ -1,10 +1,10 @@
 import { factory } from '../factory';
-import { TextInput as NativeTextInput } from 'react-native';
 import type { InputFieldProps } from './types';
+import NativeInputField from './Component';
 
 export type { InputFieldFactoryConfiguration, InputFieldProps } from './types';
 
 export const InputField = factory<InputFieldProps>(
-  NativeTextInput,
+  NativeInputField,
   'inputField'
 );
