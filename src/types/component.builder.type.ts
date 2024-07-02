@@ -16,7 +16,7 @@ export type ComponentStyle = ViewStyle | TextStyle | ImageStyle;
 /**
  * Propiedades aceptadas
  * */
-export type ComponentProps = ImageProps | TextProps | ViewProps;
+export type ComponentProps = ImageProps | TextProps | ViewProps | any;
 
 /**
  * Descompone el tipo de dato de las variantes y las transforma en propiedades

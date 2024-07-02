@@ -36,6 +36,5 @@ export const button: ButtonFactoryConfiguration = {
   defaultProps: {
     size: 'md',
     variant: 'solid',
-    activeOpacity: 0.7,
   },
 };

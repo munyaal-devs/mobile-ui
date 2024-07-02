@@ -4,7 +4,7 @@ import type {
   VariantProps,
 } from '../../types';
 import type {
-  TouchableOpacityProps,
+  PressableProps as NativePressableProps,
   ViewStyle as NativeViewStyle,
 } from 'react-native';
 
@@ -22,8 +22,8 @@ export type ButtonVariants = {
 
 export type ButtonFactoryConfiguration = ComponentConfiguration<
   NativeViewStyle,
-  TouchableOpacityProps,
+  NativePressableProps,
   ButtonVariants
 >;
 
-export type ButtonProps = VariantProps<ButtonVariants> & TouchableOpacityProps;
+export type ButtonProps = VariantProps<ButtonVariants> & NativePressableProps;

@@ -36,7 +36,7 @@ export function useStyleBuilder<Props extends ComponentProps>(
   }, [configurations]);
 
   return useMemo(() => {
-    const properties = mergeProperties(props, defaultProps);
+    const properties = mergeProperties(Object.assign({}, props), defaultProps);
 
     const generalStyles = extractStyles(globalStyles);
 
