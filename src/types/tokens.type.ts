@@ -219,6 +219,8 @@ export type Opacity = {
   100: ViewStyle['opacity'];
 };
 
+export type OpacityKey = keyof Opacity;
+
 /**
  * Define la estructura de todas las configuraciones
  * */

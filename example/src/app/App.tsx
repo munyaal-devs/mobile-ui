@@ -9,6 +9,7 @@ import MainView from './components/MainView';
 import MainProvider from './components/MainProvider';
 import InputExample from './components/InputExample';
 import ImageExample from './components/ImageExample';
+import ToastExample from './components/ToastExample';
 
 export default function App() {
   return (
@@ -38,6 +39,8 @@ export default function App() {
             <InputExample />
             <Divider />
             <ButtonExample />
+            <Divider />
+            <ToastExample />
           </View>
         </ScrollView>
       </MainView>

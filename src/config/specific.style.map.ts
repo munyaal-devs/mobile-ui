@@ -21,3 +21,4 @@ specificStyleMap.set('columnGap', 'columnGap');
 specificStyleMap.set('gap', 'gap');
 specificStyleMap.set('position', 'position');
 specificStyleMap.set('color', 'color');
+specificStyleMap.set('opacity', 'opacity');

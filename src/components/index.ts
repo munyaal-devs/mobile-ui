@@ -18,5 +18,6 @@ export * from './KeyboardAvoidingView';
 export * from './ScrollView';
 export * from './SectionList';
 export * from './Text';
+export * from './Toast';
 export * from './View';
 export * from './VStack';

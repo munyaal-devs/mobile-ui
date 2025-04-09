@@ -16,6 +16,7 @@ import type {
   ComponentConfiguration,
   ComponentConfigurationsKey,
 } from '../../types';
+import { ToastProvider } from '../ToastProvider';
 
 const initialStateContextTheme: Partial<ThemeState> = {};
 
@@ -102,7 +103,7 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = (props) => {
   return (
     <ContextTheme.Provider value={state}>
       <ContextThemeTools.Provider value={tools}>
-        {children}
+        <ToastProvider>{children}</ToastProvider>
       </ContextThemeTools.Provider>
     </ContextTheme.Provider>
   );

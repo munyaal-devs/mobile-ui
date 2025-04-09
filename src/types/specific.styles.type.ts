@@ -1,5 +1,5 @@
 import type { TextStyle, ViewStyle } from 'react-native';
-import type { ColorKey, SpaceKey } from './../types';
+import type { ColorKey, OpacityKey, SpaceKey } from './../types';
 
 /**
  * Define las propiedades de estilos que pueden pasar directos como props de un componente View
@@ -20,6 +20,7 @@ export type ViewSpecificStyles = {
   columnGap?: ViewStyle['columnGap'] | `$${SpaceKey}`;
   gap?: ViewStyle['gap'] | `$${SpaceKey}`;
   position?: ViewStyle['position'];
+  opacity?: ViewStyle['opacity'] | `$${OpacityKey}`;
 };
 
 /**
