@@ -34,7 +34,10 @@ const InputExample: FC = () => {
           <FormControl isInvalid={isInvalid} isReadOnly={isReadOnly}>
             <FormControlLabel>Correo electrónico</FormControlLabel>
             <Input>
-              <InputField />
+              <InputField
+                placeholder={'Hello'}
+                placeholderTextColor={'$primary500'}
+              />
             </Input>
             {!isInvalid ? (
               <FormControlHelperText>

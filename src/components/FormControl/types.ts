@@ -29,7 +29,7 @@ export type FormControlStateKeys = keyof Omit<
 export type FormControlFactoryConfiguration = ComponentConfiguration<
   NativeViewStyle,
   NativeViewProps,
-  never,
+  {},
   FormControlStateKeys
 >;
 

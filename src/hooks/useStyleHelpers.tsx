@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 import { aliasStyleMap, propertyStyleMap, specificStyleMap } from './../config';
-import type { ComponentStyle } from '@munyaal/mobile-ui';
 import { useThemeToolsProvider } from '../providers/ThemeProvider';
 import { useComponentContextProvider } from '../providers/ComponentContextProvider';
+import type { ComponentStyle } from '../types';
 
 export const useStyleHelpers = () => {
   const { states } = useComponentContextProvider();

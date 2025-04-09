@@ -8,7 +8,7 @@ import type { FormControlStateKeys } from '../FormControl/types';
 export type FormControlLabelFactoryConfiguration = ComponentConfiguration<
   NativeTextStyle,
   NativeTextProps,
-  never,
+  {},
   FormControlStateKeys
 >;
 

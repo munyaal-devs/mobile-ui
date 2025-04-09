@@ -8,7 +8,7 @@ import type { FormControlStateKeys } from '../FormControl/types';
 export type FormControlErrorTextFactoryConfiguration = ComponentConfiguration<
   NativeTextStyle,
   NativeTextProps,
-  never,
+  {},
   FormControlStateKeys
 >;
 

@@ -1,11 +1,14 @@
 import { useMemo } from 'react';
 import type { ComponentConfiguration, ComponentProps } from './../types';
 import { aliasStyleMap, specificStyleMap } from '../config';
+import { specificPropStyleMap } from '../config/specific.prop.style.map';
+import { useThemeToolsProvider } from '../providers/ThemeProvider';
 
 export const useClearProps = <Props extends ComponentProps>(
   conf: ComponentConfiguration<any, any, any>,
   props: Props
 ) => {
+  const { fetchTokenValue } = useThemeToolsProvider();
   const { variants, defaultProps } = conf;
 
   /**
@@ -42,8 +45,15 @@ export const useClearProps = <Props extends ComponentProps>(
       ) {
         delete customProps[key];
       }
+
+      if (specificPropStyleMap.has(key)) {
+        const userValue = customProps[key];
+        const themeValue = fetchTokenValue('colors', userValue);
+
+        Object.assign(customProps, { [key]: themeValue });
+      }
     }
 
     return customProps;
-  }, [allProps, variants]);
+  }, [allProps, variants, fetchTokenValue]);
 };

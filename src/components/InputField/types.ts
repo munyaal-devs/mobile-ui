@@ -8,7 +8,7 @@ import type { FormControlStateKeys } from '../FormControl/types';
 export type InputFieldFactoryConfiguration = ComponentConfiguration<
   NativeTextStyle,
   NativeTextInputProps,
-  never,
+  {},
   FormControlStateKeys
 >;
 
