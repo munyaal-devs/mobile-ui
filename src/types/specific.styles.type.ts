@@ -28,6 +28,7 @@ export type ViewSpecificStyles = {
  * */
 export type TextSpecificStyles = {
   color?: TextStyle['color'] | `$${ColorKey}`;
+  textAlign?: TextStyle['textAlign'];
 };
 
 /**
