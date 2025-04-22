@@ -1,4 +1,4 @@
-import React, { type FC, useCallback, useState } from 'react';
+import React, { type FC, useCallback, useRef, useState } from 'react';
 import {
   Button,
   ButtonText,
@@ -12,10 +12,13 @@ import {
   KeyboardAvoidingView,
   View,
 } from '@munyaal/mobile-ui';
+import type { TextInput } from 'react-native';
 
 const InputExample: FC = () => {
   const [isReadOnly, setIsReadOnly] = useState<boolean>(false);
   const [isInvalid, setIsInvalid] = useState<boolean>(false);
+
+  const inputRef = useRef<TextInput>(null);
 
   const handleToggleReadOnly = useCallback(() => {
     setIsReadOnly((prevState) => !prevState);
@@ -34,10 +37,7 @@ const InputExample: FC = () => {
           <FormControl isInvalid={isInvalid} isReadOnly={isReadOnly}>
             <FormControlLabel>Correo electrónico</FormControlLabel>
             <Input>
-              <InputField
-                placeholder={'Hello'}
-                placeholderTextColor={'$primary500'}
-              />
+              <InputField placeholder={'Hello'} ref={inputRef} />
             </Input>
             {!isInvalid ? (
               <FormControlHelperText>

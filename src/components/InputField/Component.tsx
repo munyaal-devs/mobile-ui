@@ -1,4 +1,10 @@
-import React, { type FC, useCallback, useMemo } from 'react';
+import React, {
+  forwardRef,
+  useCallback,
+  useMemo,
+  type PropsWithoutRef,
+  type ForwardRefRenderFunction,
+} from 'react';
 import type {
   NativeSyntheticEvent,
   TextInputFocusEventData,
@@ -8,7 +14,10 @@ import { TextInput } from 'react-native';
 import { useComponentContextProvider } from '../../providers/ComponentContextProvider';
 import type { FormControlStateProvider } from '../FormControl/types';
 
-const InputField: FC<TextInputProps> = (props) => {
+const InputField: ForwardRefRenderFunction<
+  TextInput,
+  PropsWithoutRef<TextInputProps>
+> = (props, ref) => {
   const {
     states: { setIsFocused, isDisabled, isReadOnly },
   } = useComponentContextProvider<FormControlStateProvider>();
@@ -37,6 +46,7 @@ const InputField: FC<TextInputProps> = (props) => {
   return (
     <TextInput
       {...props}
+      ref={ref}
       readOnly={readOnly}
       onFocus={handleFocus}
       onBlur={handleBlur}
@@ -44,4 +54,4 @@ const InputField: FC<TextInputProps> = (props) => {
   );
 };
 
-export default InputField;
+export default forwardRef(InputField);

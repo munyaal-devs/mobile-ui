@@ -1,6 +1,7 @@
 import React, {
   type ComponentType,
   type FC,
+  forwardRef,
   memo,
   type PropsWithChildren,
 } from 'react';
@@ -24,6 +25,27 @@ export function factory<Props extends ComponentProps>(
       </Component>
     );
   };
+
+  return memo(FunctionalComponent);
+}
+
+export function factoryWithRef<Props extends ComponentProps, Ref>(
+  Component: ComponentType<PropsWithChildren<Props>>,
+  name: ComponentConfigurationsKey
+) {
+  const FunctionalComponent = forwardRef<Ref, PropsWithChildren<Props>>(
+    (props, ref) => {
+      const { children, ...allProps } = props;
+
+      const { properties, styles } = useFactory(allProps, name);
+
+      return (
+        <Component {...properties} style={styles} ref={ref}>
+          {children}
+        </Component>
+      );
+    }
+  );
 
   return memo(FunctionalComponent);
 }
