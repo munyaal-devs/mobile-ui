@@ -2,7 +2,7 @@ import React, { type FC, type PropsWithChildren, useMemo } from 'react';
 import { type ColorSchemeName, useColorScheme } from 'react-native';
 import { type ThemeMode, ThemeProvider } from '@munyaal/mobile-ui';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { themeConfig } from '../../theme';
+import { themeConfig } from '../theme';
 
 const MainProvider: FC<PropsWithChildren> = (props) => {
   const { children } = props;

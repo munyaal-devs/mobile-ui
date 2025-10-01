@@ -5,11 +5,7 @@ import React, {
   type PropsWithoutRef,
   type ForwardRefRenderFunction,
 } from 'react';
-import type {
-  NativeSyntheticEvent,
-  TextInputFocusEventData,
-  TextInputProps,
-} from 'react-native';
+import type { TextInputProps, FocusEvent, BlurEvent } from 'react-native';
 import { TextInput } from 'react-native';
 import { useComponentContextProvider } from '../../providers/ComponentContextProvider';
 import type { FormControlStateProvider } from '../FormControl/types';
@@ -23,7 +19,7 @@ const InputField: ForwardRefRenderFunction<
   } = useComponentContextProvider<FormControlStateProvider>();
 
   const handleFocus = useCallback(
-    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    (e: FocusEvent) => {
       setIsFocused(true);
       props.onFocus?.(e);
     },
@@ -31,7 +27,7 @@ const InputField: ForwardRefRenderFunction<
   );
 
   const handleBlur = useCallback(
-    (e: NativeSyntheticEvent<TextInputFocusEventData>) => {
+    (e: BlurEvent) => {
       setIsFocused(false);
       props.onBlur?.(e);
     },
