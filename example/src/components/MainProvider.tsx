@@ -10,7 +10,7 @@ const MainProvider: FC<PropsWithChildren> = (props) => {
   const colorScheme: ColorSchemeName = useColorScheme();
 
   const theme: ThemeMode = useMemo(
-    () => (colorScheme ? colorScheme : 'light'),
+    () => (colorScheme === 'dark' ? 'dark' : 'light'),
     [colorScheme]
   );
 

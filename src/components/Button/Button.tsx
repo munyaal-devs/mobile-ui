@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
   },
   rippleContainer: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,
     zIndex: 1,
   },
   element: {
