@@ -20,7 +20,14 @@ export function factory<Props extends ComponentProps>(
     const { properties, styles } = useFactory(allProps, name);
 
     return (
-      <Component {...properties} style={styles}>
+      <Component
+        // El factory es la frontera entre el core tipado y los componentes RN
+        // heterogéneos (View/Text/Image/Pressable). Acotamos un único cast
+        // aquí para no propagar `any` a los hooks subyacentes.
+
+        {...(properties as any)}
+        style={styles as any}
+      >
         {children}
       </Component>
     );
@@ -40,7 +47,7 @@ export function factoryWithRef<Props extends ComponentProps, Ref>(
       const { properties, styles } = useFactory(allProps, name);
 
       return (
-        <Component {...properties} style={styles} ref={ref}>
+        <Component {...(properties as any)} style={styles as any} ref={ref}>
           {children}
         </Component>
       );

@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native';
 import { useStyleHelpers } from './useStyleHelpers';
 
 export function useStyleBuilder<Props extends ComponentProps>(
-  configurations: ComponentConfiguration<any, any, any>,
+  configurations: ComponentConfiguration,
   props: Props
 ) {
   const {
@@ -36,7 +36,10 @@ export function useStyleBuilder<Props extends ComponentProps>(
   }, [configurations]);
 
   return useMemo(() => {
-    const properties = mergeProperties(Object.assign({}, props), defaultProps);
+    const properties = mergeProperties(
+      Object.assign({}, props) as unknown as Record<string, unknown>,
+      defaultProps as unknown as Record<string, unknown>
+    );
 
     const generalStyles = extractStyles(globalStyles);
 

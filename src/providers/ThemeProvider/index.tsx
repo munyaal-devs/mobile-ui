@@ -58,13 +58,19 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = (props) => {
   const fetchTokenValue = useCallback(
     (token: ThemeStateKey, value: string | number) => {
       if (typeof value === 'string' && value.startsWith('$')) {
-        value = value.replace('$', '');
+        const tokenKey = value.slice(1);
 
         if (state.hasOwnProperty(token)) {
-          const tokenFound = state[token];
+          const tokenFound = state[token] as
+            | Record<string, unknown>
+            | undefined;
 
-          if (tokenFound.hasOwnProperty(value)) {
-            return tokenFound[value];
+          if (
+            tokenFound &&
+            typeof tokenFound === 'object' &&
+            tokenFound.hasOwnProperty(tokenKey)
+          ) {
+            return tokenFound[tokenKey] as string | number;
           }
         }
       }
@@ -75,18 +81,29 @@ const ThemeProvider: FC<PropsWithChildren<ThemeProviderProps>> = (props) => {
   );
 
   /**
-   * Busca la configuración de estilos del componente
+   * Busca la configuración de estilos del componente.
+   *
+   * Si no existe configuración registrada para `componentName` se devuelve un
+   * fallback seguro y bien tipado (`{}`). En desarrollo además se emite un
+   * `console.warn` para alertar de la omisión, evitando fallos silenciosos
+   * sin romper la API pública.
    * @param {ComponentConfigurationsKey} componentName
    * */
   const fetchComponentConfiguration = useCallback(
-    (
-      componentName: ComponentConfigurationsKey
-    ): ComponentConfiguration<any, any, any> => {
+    (componentName: ComponentConfigurationsKey): ComponentConfiguration => {
       const configuration = state.components?.[componentName];
 
       if (configuration) {
-        return { ...configuration } as ComponentConfiguration<any, any, any>;
+        return { ...configuration } as unknown as ComponentConfiguration;
       }
+
+      if (__DEV__) {
+        console.warn(
+          `[mobile-ui] No se encontró configuración para el componente ` +
+            `"${componentName}". Se usará una configuración vacía como fallback.`
+        );
+      }
+
       return {};
     },
     [state]

@@ -2,6 +2,7 @@ import type { AliasStyle } from './aliases.type';
 import type {
   ImageProps,
   ImageStyle,
+  PressableProps,
   TextProps,
   TextStyle,
   ViewProps,
@@ -15,13 +16,24 @@ export type ComponentStyle = ViewStyle | TextStyle | ImageStyle;
 
 /**
  * Propiedades aceptadas
+ *
+ * Unión de los props nativos de los componentes base que envuelve el factory.
+ * Se incluyen `ViewProps`, `TextProps`, `ImageProps` y `PressableProps` (este
+ * último no extiende a `ViewProps` por el callback de `children`, por lo que
+ * debe aparecer explícitamente). Los componentes compuestos extienden alguno
+ * de estos props, por lo que siguen siendo asignables a la unión sin recurrir
+ * a `any`.
  * */
-export type ComponentProps = ImageProps | TextProps | ViewProps | any;
+export type ComponentProps =
+  | ImageProps
+  | TextProps
+  | ViewProps
+  | PressableProps;
 
 /**
  * Descompone el tipo de dato de las variantes y las transforma en propiedades
  */
-export type VariantProps<V extends Object = {}> = {
+export type VariantProps<V extends Record<PropertyKey, unknown> = {}> = {
   [K in keyof V]?: keyof V[K] extends IsBoolean ? boolean : keyof V[K];
 } & Partial<AliasStyle>;
 
@@ -58,7 +70,7 @@ export type StatePipe<
 export type ComponentConfiguration<
   StyleArgs extends ComponentStyle = {},
   Props extends ComponentProps = {},
-  Variants extends Object = {},
+  Variants extends Record<PropertyKey, unknown> = {},
   StateArgs extends string = never,
 > = StylePipe<StyleArgs> &
   StatePipe<StateArgs, StyleArgs> & {
